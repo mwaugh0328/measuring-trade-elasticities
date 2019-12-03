@@ -1,0 +1,1243 @@
+\documentclass[12pt,dvips, ps2pdf]{article}
+\usepackage[dvips]{graphicx,color}
+\usepackage{setspace,palatino,multirow}
+\usepackage{amsmath,amssymb}
+\usepackage{titlesec}
+\usepackage{lscape}
+\usepackage{subfigure}
+\usepackage[longnamesfirst]{natbib}
+\bibliographystyle{econometrica}
+\usepackage{cite}
+
+\definecolor{nblue}{RGB}{0,0,128}
+
+\usepackage[dvips,colorlinks=true, linkcolor=nblue,
+citecolor=nblue, urlcolor=black, bookmarks=false, ,
+pdfstartview={FitV},
+pdftitle={The Elasticity of Trade:Estimates and Evidence },
+pdfauthor={Ina Simonovska, Michael E. Waugh},
+pdfkeywords={economics,international, international trade, gravity, elasticity, elasticity of trade, bilateral, gravity, price dispersion, indirect inference, Ricardian, bias, trade costs, welfare gains from trade  }, breaklinks]{hyperref}
+
+
+\newcounter{saveeqni}%
+\newcounter{saveeqn01i}%
+\newcommand{\alpheqni}{\setcounter{saveeqni}{\value{section}}%
+%\setcounter{saveeqn01i}{\value{subsectioni}}%
+\renewcommand{\theequation}
+    {\alph{saveeqni}\mbox{.\arabic{equation}}}}%
+\newcommand{\reseteqni}{\setcounter{equation}{\value{saveeqni}}%
+\renewcommand{\theequation}{\arabic{equation}}}%
+
+\newtheorem{as}{Assumption}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{corr}{Corollary}
+\newtheorem{df}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{prp}{Proposition}
+\newtheorem{rmk}{Remark}
+\newenvironment{prf}{{\bf Proof}}{\hfill { }}
+
+\DeclareMathOperator*{\plim}{plim}
+\DeclareMathOperator*{\umax}{max}
+
+\special{papersize=8.5in,11in}
+\onehalfspacing
+\setlength{\parindent}{0.1em}
+\setlength{\parskip}{.09in}
+\textwidth15.75cm
+\evensidemargin 1.5in
+\oddsidemargin 1.5in
+\topmargin 8.5cm
+\textheight 10in
+\hyphenation{over-lapping}
+
+\titleformat{\section}{\color{black}\large\bf}{\color{black}{\thesection.}}{.25cm}{}
+\titleformat{\subsection}{\color{black}\normalsize\bf}{\thesubsection.}{.5em}{}
+\titleformat{\subsubsection}{\color{black}\normalsize\bf}{\thesubsubsection.}{.5em}{}
+
+\titlespacing{\section}{0pt}{*1.5}{*.5}
+\titlespacing{\subsection}{0pt}{*1.5}{*.5}
+\titlespacing{\subsubsection}{0pt}{*1.5}{*.5}
+
+\def\thesection{\arabic{section}}
+\def\thesubsection{\arabic{section}.\arabic{subsection}}
+\def\thesubsubsection{\arabic{section}.\arabic{subsection}.\Alph{subsubsection}}
+
+\def\citeapos#1{\citeauthor{#1}'s (\citeyear{#1})}
+
+\renewcommand{\arraystretch}{1.0}
+\usepackage[margin=2cm]{geometry}
+
+%\setlength{\parskip}{.18cm}
+\begin{document}
+\begin{onehalfspacing}
+
+
+%\vspace{1.0cm}
+
+
+
+%\vspace{0cm}
+
+\large \textbf{The Elasticity of Trade: }
+
+\vspace{-0.3cm}
+
+\large \textbf{Estimates and Evidence}
+
+\vspace{0.5cm}
+
+\normalsize Ina Simonovska
+
+\vspace{-0.3cm}
+
+University of California, Davis, United States
+
+\vspace{-0.3cm}
+
+NBER, United States
+
+\vspace{0.5cm}
+
+Michael E. Waugh
+
+\vspace{-0.3cm}
+
+New York University, United States
+
+%\vspace{0.5cm}
+
+%First Version: April 2009
+
+%\vspace{-0.3cm}
+
+%This Version: October 2013
+
+\vspace{1.5cm}
+
+\normalsize
+
+ABSTRACT -----------------------------------------------------------------------------------------------------------
+
+%Quantitative results from a large class of structural gravity models of international trade depend critically on the elasticity of trade with respect to trade frictions. We develop a new simulated method of moments estimator to estimate this elasticity from disaggregate price and trade-flow data and we use it within \citeapos{ek02} Ricardian model. We apply our estimator to new disaggregate price and trade-flow data for 123 countries in the year 2004. Our method yields a trade elasticity of roughly four, nearly fifty percent lower than \citeapos{ek02} approach. Moreover, robustness exercises result in trade elasticity estimates that are both lower and fall within a narrower range relative to the existing literature. This difference doubles the welfare gains from international trade.
+
+Quantitative results from a large class of structural gravity models of international trade depend critically on the elasticity of trade with respect to trade frictions. We develop a new simulated method of moments estimator to estimate this elasticity from disaggregate price and trade-flow data and we use it within \citeapos{ek02} Ricardian model. We apply our estimator to disaggregate price and trade-flow data for 123 countries in the year 2004. Our method yields a trade elasticity of roughly four, nearly fifty percent lower than \citeapos{ek02} approach. This difference doubles the welfare gains from international trade.
+
+%100 abstract Quantitative results from a large class of structural gravity models of international trade depend critically on the elasticity of trade with respect to trade frictions. We develop a new simulated method of moments estimator to estimate this elasticity from disaggregate price and trade-flow data and we use it within \citeapos{ek02} Ricardian model. We apply our estimator to disaggregate price and trade-flow data for 123 countries in the year 2004. Our method yields a trade elasticity of roughly four, nearly fifty percent lower than \citeapos{ek02} approach. This difference doubles the welfare gains from international trade.
+
+
+%Quantitative results from a large class of structural gravity models of international trade depend critically on the elasticity of trade with respect to trade frictions. We develop a new simulated method of moments estimator to estimate this elasticity from disaggregate price and trade-flow data using \citeapos{ek02} Ricardian model. We apply our estimator to new disaggregate price and trade-flow data for 123 countries in the year 2004. Our method yields a trade elasticity of roughly four, nearly fifty percent lower than \citeapos{ek02} approach. This difference doubles the welfare gains from international trade.
+
+%a lower and narrower range for the trade elasticity relative to the existing literature.
+
+
+%Quantitative results from a large class of structural gravity models of international trade depend critically on the elasticity of trade with respect to trade frictions. We develop a simulated method of moments estimator to estimate this elasticity from disaggregate price and trade-flow data using the Ricardian model. We motivate our approach by showing the limitations of the methodology employed by \citet{ek02}. We apply our estimator to new disaggregate price and trade-flow data for 123 countries in the year 2004. Our method yields a trade elasticity of roughly four, nearly fifty percent lower than \citeapos{ek02} approach. This difference doubles the welfare gains from international trade.
+
+----------------------------------------------------------------------------------------------------------------------------
+\vspace{-0.1cm}
+
+JEL Classification: F10, F11, F14, F17
+
+\vspace{-0.2cm}
+
+Keywords: elasticity of trade, bilateral, gravity, price dispersion, indirect inference
+
+\vspace{0.4cm}
+
+\footnotesize Email: inasimonovska@ucdavis.edu, mwaugh@stern.nyu.edu.\\We are grateful to the World Bank for providing us with the price data from the 2003-2005 ICP round. We thank George Alessandria, Alexander Aue, Dave Donaldson, Robert Feenstra, Timothy Kehoe, Matthias Lux, B. Ravikumar, seminar participants at CUHK, Tsinghua, UC San Diego, Syracuse, ETH/KOF, Princeton, Uppsala, Oslo, San Francisco Fed, UC Berkeley, NYU and participants at the CESifo Area Conference on Global Economy 2011, NBER ITI Program Meeting Winter 2010, 2010 International Trade Workshop at the Philadelphia Fed, Conference on Microeconomic Sources of Real Exchange Rate Behavior at Vanderbilt, Midwest International Trade Meeting Fall 2010, SED 2010, WEAI 2010, Conference on Trade Costs and International Trade Integration: Past, Present and Future in Venice, International Comparisons Conference at Oxford, North American Winter Meeting of the Econometric Society 2010, AEA 2010 for their feedback. Ina Simonovska thanks Princeton University for their hospitality and financial support through the Peter B. Kenen fellowship.
+
+\thispagestyle{empty}
+\end{onehalfspacing}
+
+\newpage
+\setcounter{page}{1}
+\normalsize
+
+\section{Introduction}
+
+Quantitative results from a large class of structural gravity models of international trade depend critically on the elasticity of trade with respect to trade frictions.\footnote{The class of models includes Armington, \citet{krug80}, \citet{ek02}, and \citet{mel03} as articulated in \citet{chaney08}, which all generate log-linear relationships between bilateral trade flows and trade frictions.} To illustrate how important this parameter is, consider two examples: First, for any pair of countries, the estimate of the tariff equivalent of a border effect is inversely proportional to the assumed elasticity of trade with respect to trade frictions. Thus, observed reductions in tariffs across countries can explain almost all or none of the growth in world trade, depending on this elasticity. Second, the trade elasticity is one of only two statistics needed to measure the welfare cost of autarky in a large and important class of structural gravity models of international trade. Therefore, this elasticity is key to understanding the size of the frictions to trade, the response of trade to changes in tariffs, and the welfare gains or losses from trade.
+
+Estimating this parameter is difficult because quantitative trade models can rationalize small trade flows with either large trade frictions and small elasticities, or small trade frictions and large elasticities. Thus, one needs satisfactory measures of trade frictions \emph{independent} of trade flows to estimate this elasticity.
+Using their Ricardian model of trade, \citet{ek02} (henceforth EK)  provide an innovative and simple solution to this problem by arguing that, with product-level price data, one could use the maximum price difference across goods between countries as a proxy for bilateral trade frictions. The maximum price difference between two countries is meaningful because it is bounded by the trade friction between the two countries via simple no-arbitrage arguments.
+
+We develop a new simulated method of moments estimator for the elasticity of trade incorporating EK's intuition. Our argument for a new estimator is that EK's method understates the true trade friction and results in estimates of the trade elasticity that are biased upward by economically significant magnitudes. Thus, we propose a new methodology, which is subject to the same data requirements as EK's approach, and we use it within EK's Ricardian model in order to correct the bias and arrive at a new estimate for the elasticity of trade.
+
+We apply our estimator to disaggregate price and trade-flow data for the year 2004, which span 123 countries that account for 98 percent of world GDP. Our benchmark estimate for the elasticity of trade is 4.14, rather than approximately eight, as EK's estimation strategy suggests. This difference doubles the measured welfare gains from trade.
+
+
+%We develop a simulated method of moments estimator to estimate this elasticity from disaggregate price and trade-flow data using the Ricardian model. Our estimator builds on the insight of \citet{ek02} (henceforth EK)  who argue that, with product-level price data, one can use the maximum price difference across goods between countries as a proxy for the bilateral trade friction and then estimate the elasticity of trade using the gravity equation.
+%
+%
+%We then apply our estimator to novel disaggregate price and trade-flow data for the year 2004, spanning 123 countries that account for 98 percent of world output. Our benchmark estimate for the elasticity of trade is 4.12, rather than approximately eight, as EK's estimation strategy suggests. More broadly, this value is essentially half of what \citeapos{aw04} find when surveying results from alternative gravity based estimators of this elasticity. This difference doubles the measured welfare gains from international trade across various models.
+% We prove this result and then provide quantitative measures of the bias via Monte Carlo simulations of the EK model.
+
+%Estimating this parameter is difficult because quantitative trade models can rationalize small trade flows with either large trade frictions and small elasticities, or small trade frictions and large elasticities. Thus, one needs satisfactory measures of trade frictions \emph{independent} of trade flows to estimate this elasticity. Within the context of a Ricardian model of heterogeneity, \citet{ek02} (henceforth EK)  provide an innovative and simple solution to this problem by arguing that, with product-level price data, one could use the maximum price difference across goods between countries as a proxy for bilateral trade frictions. The maximum price difference between two countries is meaningful because it is bounded by the trade friction between the two countries via simple no-arbitrage arguments.
+
+
+Since the elasticity of trade plays a key role in quantifying the welfare gains from trade, it is important to understand why our estimates of the parameter differ substantially from EK's. We show that the reason behind the difference is that their estimator is biased in finite samples of price data. The bias arises because the model's equilibrium no-arbitrage conditions imply that the maximum operator over a finite sample of prices underestimates the trade cost with positive probability and overestimates the trade cost with zero probability. Consequently, the maximum price difference lies strictly below the true trade cost, in expectation. This implies that EK's estimator delivers an elasticity of trade that lies strictly above the true parameter, in expectation. As the sample size grows to infinity, EK's estimator can uncover the true elasticity of trade, which necessarily implies that the bias in the estimates of the parameter is eliminated.
+
+Quantitatively, the bias is substantial. To illustrate its severity, we discretize EK's model, simulate trade flows and product-level prices under an assumed elasticity of trade, and apply their estimating approach on artificial data. Assuming a trade elasticity of 8.28---EK's preferred estimate for 19 OECD countries in 1990---EK's procedure yields an elasticity estimate of 12.5, which is nearly 50-percent higher than originally postulated. Moreover, in practice, the true parameter can be recovered when 50,000 goods are sampled across the 19 economies, which constitutes an extreme data requirement to produce unbiased estimates of the elasticity of trade.
+
+Based on these arguments, we propose an estimator that is applicable when the sample size of prices is small. Our approach builds on our insight that one can use observed bilateral trade flows to recover all sufficient parameters to simulate EK's model and to obtain trade flows and prices as functions of the parameter of interest. This insight then suggests a simulated method of moments estimator that minimizes the distance between the moments obtained by applying EK's approach on real and artificial data. We explore the properties of this estimator numerically using simulated data and we show that it can uncover the true elasticity of trade.
+
+Applying our estimator to alternative data sets and conducting several robustness exercises allows us to establish a range for the elasticity of trade between 2.79 and 4.46. In contrast, EK's approach would have found a range of 4.17 to 9.6. Thus, our method finds elasticities that are roughly half the size of EK's approach.  Because the inverse of this elasticity linearly controls changes in real income necessary to compensate a representative consumer for going to autarky, our estimates double the measured welfare gains from trade relative to previous findings.
+
+The contribution of this paper is threefold. First, we provide a precise point estimate of the trade elasticity in the context of EK's Ricardian model that doubles the welfare gains from trade predicted by EK's estimation. Since EK's model is a canonical model of international trade and it is widely used in quantitative trade studies, providing a precise point estimate of the trade elasticity in the context of this model is important. Moreover, our findings suggest a range for the trade elasticity of 2.79 to 4.46, which is both lower and narrower relative to EK's estimates of 3.6 to 12.8. In particular, our critique also applies to EK's estimate of 12.8, which was obtained using an alternative approach. After correcting for biases in EK's alternative approach, we obtain an estimate of 4.4, which is nearly the same as our benchmark finding. Thus, we provide a lower and narrower range of 2.79 to 4.46, relative to EK's wide range of estimates.
+
+Second, we develop a methodology that is applicable to a wide class of trade models. The method and the moments that we use to estimate the trade elasticity within EK's Ricardian framework can be derived for other structural gravity models of trade. In \citet{sw11}, we show how the new estimation strategy applies to models with product differentiation such as \citet{and79} and \citet{krug80}, variable mark-ups such as \citet{bejk03}, and models that build on the monopolistic-competition structure of \citet{mel03} as articulated in \citet{chaney08}. Thus, while we focus on the particulars of EK's Ricardian model and our method's relationship with EK's approach, our methodology contributes to the estimation of trade elasticities above and beyond a particular model.
+
+Third, the estimates that we obtain using the newly-developed methodology contribute to a large and important literature that aims to measure the trade elasticity. \citet{aw04} survey the literature that estimates the trade elasticity using various approaches and they establish a range between five and ten. One set of estimates that \citet{aw04} report is obtained using \citeapos{feenstra1994} method. However, in heterogeneous frameworks with constant-elasticity-of-substitution (CES) preferences, such as EK's Ricardian model, \citeapos{feenstra1994} method recovers the preference parameter that controls the elasticity of substitution across goods. This parameter plays no role in determining aggregate trade flows and welfare gains from trade in EK's Ricardian model with micro-level heterogeneity.%\footnote{In \citet{sw11}, we demonstrate that the same argument applies to the monopolistic-competition model of \citet{mel03} as articulated in \citet{chaney08}.}
+
+Another set of estimates that \citet{aw04} document relies on time-series and cross-industry variation in tariffs and trade flows during trade liberalization episodes as in \citet{head_ries01} and \citet{romalis}, or time-series and cross-country variation in tariffs and trade flows for developed economies during the post-war period as in \citet{baier2001}. Recently, \citet{caliendo2010} build on these approaches and estimate sectoral trade elasticities from cross-sectional variations in trade flows and tariffs. The methods that rely on variations in tariffs and trade flows in order to identify the trade elasticity are applicable to a variety of structural gravity models, including EK's Ricardian model. Hence, the estimates obtained using these methods are comparable to our estimates of the trade elasticity.
+
+Admittedly, there are two outstanding issues in our analysis. First, there is a difference between the low values of the elasticity that our approach yields and the high values typically obtained using tariff data. In particular, \citet{head_ries01}, \citet{romalis}, and \citet{baier2001} find values in the range of five to ten, while our benchmark estimates center around four. The corollary is that the low values of the elasticity we find imply large deviations between observed trade frictions (tariffs, transportation costs, etc.) and those inferred from trade flows.
+
+However, there are two pieces of evidence in support of the values that we find. First, \citet{parro2013} uses the tariff based approach of \citet{caliendo2010} to estimate an aggregate trade elasticity for capital goods and non-capital, traded goods. He finds estimates of 4.6 and 5.2 which are only modestly larger than ours. Second, our results compare favorably with alternative estimates of the shape parameter of the productivity distribution, which governs the trade elasticity in models with micro-level heterogeneity, that are not obtained from gravity-based estimators. For example, estimates of the shape parameter from firm-level sales data, as in \citet{bejk03} and \citet{ekk08}, are in the range of 3.6 to 4.8---exactly in the range of values that we find. Identification of the parameter in these papers comes from firm-level data, which suggest that there is a lot of variation in firm productivity. The data in our paper are telling a similar story: price variation (once properly corrected) suggests that there is a lot of variation in productivity implying a relatively low trade elasticity.
+
+Second, there are concerns about the quality of the price data that we use in our analysis and we address them to the best of our ability within the scope of the paper. As in EK, we use cross-country micro-level price data from the International Comparison Program (ICP). Obvious concerns with these data are the degree of product comparability (especially across rich and poor countries), aggregation, general measurement error, the role of distribution mark-ups, etc. To make headway, we incorporate these issues into our estimation to determine the direction and quantitative effects that they could have on our estimates. Finally, we provide an additional set of estimates using cross-country price data from the Economist Intelligence Unit (EIU), which suggest a trade elasticity that is even lower than our baseline results.
+
+
+
+%The approach typically associates the entire change in trade flows during a trade liberalization with changes in tariffs. This necessarily results in high estimates of the trade elasticity, since changes in non-tariff barriers that occur during trade liberalizations are not accounted for in the estimation. Moreover, this approach is subject to a large data requirement, so it typically focuses on a particular episode that involves a handful of countries. In contrast, using our methodology, we provide estimates for the trade elasticity from data that spans as many as 123 countries, which account for 98 percent of world output.
+
+\section{Model}\label{sec:model}
+
+
+We outline the environment of the multi-country Ricardian model of trade introduced by EK. We consider a world with $N$ countries, where each country has a tradable final-goods sector. There is a continuum of tradable goods indexed by $j\in[0,1]$.
+
+\noindent Within each country $i$, there is a measure of consumers $L_i$. Each consumer has one unit of time supplied inelastically in the domestic labor market and enjoys the consumption of a CES bundle of final tradable goods with elasticity of substitution $\rho> 1$:
+\begin{eqnarray*}
+U_i = \left [\int_{0}^{1} x_i(j)^{\frac{\rho-1}{\rho}}dj\right ]^\frac{\rho}{\rho-1}.
+\end{eqnarray*}
+To produce quantity $x_i(j)$ in country $i$, a firm employs labor using a linear production function with productivity $z_i(j)$. Country $i$'s productivity is, in turn, the realization of a random variable (drawn independently for each $j$) from its country-specific Fr\'{e}chet probability distribution:
+\begin{eqnarray}
+F_i(z_i)=\exp(-T_iz_i^{-\theta}).
+\label{frech_dist}
+\end{eqnarray}
+The country-specific parameter $T_i>0$ governs the location of the distribution; higher values of it imply that a high productivity draw for any good $j$ is more likely. The parameter $\theta>1$ is common across countries and, if higher, it generates less variability in productivity across goods.
+
+Having drawn a particular productivity level, a perfectly competitive firm from country $i$ incurs a marginal cost to produce good $j$ of $w_i/z_i(j)$, where $w_i$ is the wage rate in the economy. Shipping the good to a destination $n$ further requires a per-unit iceberg trade cost of $\tau_{ni}>1$ for $n\neq i$, with $\tau_{ii}=1$. We assume that cross-border arbitrage forces effective geographic barriers to obey the triangle inequality: For any three countries $i,k,n$, $\tau_{ni}\leq \tau_{nk}\tau_{ki}$.
+
+Below, we describe equilibrium prices, trade flows, and welfare.
+
+Perfect competition forces the price of good $j$ from country $i$ to destination $n$ to be equal to the marginal cost of production and delivery:
+\begin{eqnarray*}
+p_{ni}(j)=\frac{\tau_{ni}w_i}{z_i(j)}.
+\end{eqnarray*}
+So, consumers in destination $n$ would pay $p_{ni}(j)$, should they decide to buy good $j$ from $i$.
+
+Consumers purchase good $j$ from the low-cost supplier; thus, the actual price consumers in $n$ pay for good $j$ is the minimum price across all sources $k$:
+\begin{eqnarray}
+p_n(j)= \min_{k=1,...,N}\bigg\{p_{nk}(j)\bigg\}.
+\label{min_price}
+\end{eqnarray}
+The pricing rule and the productivity distribution allow us to obtain the following CES exact price index for each destination $n$:
+\begin{eqnarray}
+\label{P_ek}
+P_n=\gamma \Phi_n^{-\frac{1}{\theta}} \ \ \ \ \mbox{where} \ \ \ \ \Phi_n = \left[\sum_{k=1}^NT_k(\tau_{nk}w_k)^{-\theta}\right].
+\end{eqnarray}
+In the above equation, $\gamma=\left[\Gamma\left(\frac{\theta+1-\rho}{\theta}\right)\right]^{\frac{1}{1-\rho}} \ $ is the Gamma function, and parameters are restricted such that $\theta>\rho-1$.
+
+To calculate trade flows between countries, let $X_n$ be country $n$'s expenditure on final goods, of which $X_{ni}$ is spent on goods from country $i$. Since there is a continuum of goods, computing the fraction of income spent on imports from $i$, $X_{ni}/X_n$, can be shown to be equivalent to finding the probability that country $i$ is the low-cost supplier to country $n$ given the joint distribution of efficiency levels, prices, and trade costs for any good $j$. The expression for the share of expenditures that $n$ spends on goods from $i$ or, as we will call it, the trade share is:
+\begin{eqnarray}
+\displaystyle \label{trdshrs} \frac{X_{ni}}{X_n}&=&\frac{T_i(\tau_{ni}w_i)^{-\theta}}{\sum_{k=1}^NT_k(\tau_{nk}w_k)^{-\theta}}.
+\end{eqnarray}
+Expressions (\ref{P_ek}) and (\ref{trdshrs}) allow us to relate trade shares to trade costs and the price indices of each trading partner via the following equation:
+\begin{eqnarray}
+\displaystyle \label{main_eq} \frac{X_{ni}/X_n}{X_{ii}/X_i}&=& \frac{\Phi_i}{\Phi_n}\tau_{ni}^{-\theta} = \left(\frac{P_i\tau_{ni}}{P_n}\right)^{-\theta},
+\end{eqnarray}
+\noindent where $\frac{X_{ii}}{X_i}$ is country $i$'s expenditure share on goods from country $i$, or its home trade share.
+
+In this model, it is easy to show that the welfare gains from trade are essentially captured by changes in the CES price index that a representative consumer faces. Because of the tight link between prices and trade shares, this model generates the following relationship between changes in price indices and changes in home trade shares, as well as, the elasticity parameter:
+\begin{eqnarray}
+\label{welfare}
+\frac{P_n'}{P_n}-1=1-\left(\frac{X_{nn}'/X_{n}'}{X_{nn}/X_n}\right)^\frac{1}{\theta},
+\end{eqnarray}
+where the left-hand side can be interpreted as the percentage compensation a representative consumer in country $n$ requires to move between two trading equilibria.
+
+Expression (\ref{main_eq}) is not particular to EK's model. Several popular models of international trade relate trade shares, prices and trade costs in the same exact manner. These models include \citet{and79} and \citet{krug80}. More importantly for the context of this paper, the heterogeneous Ricardian framework of \citet{bejk03} and the model of firm heterogeneity by \citet{mel03}, when parametrized as in \citet{chaney08}, also generate this relationship. \citet{acr09} show how equation (\ref{welfare}) arises in all of these models.
+
+\subsection{The Elasticity of Trade}\label{sec:trade_welfare}
+
+The key parameter determining trade flows (equation (\ref{main_eq})) and welfare (equation (\ref{welfare})) is  $\theta$. To see the parameter's importance for trade flows, take logs of equation (\ref{main_eq}) yielding:
+\begin{eqnarray}
+\displaystyle \log\left(\frac{X_{ni}/X_n}{X_{ii}/X_i}\right)&=&-\theta\left[\log\left(\tau_{ni}\right) -  \log(P_i) +  \log(P_n)\right].
+\label{log_elasticity_trade}
+\end{eqnarray}
+\noindent As this expression makes clear, $\theta$ controls how a change in the bilateral trade costs, $\tau_{ni}$, will change bilateral trade between two countries. This elasticity is important because if one wants to understand how a bilateral trade agreement will impact aggregate trade or to simply understand the magnitude of the trade friction between two countries, then a stand on this elasticity is necessary. This is what we mean by the elasticity of trade.
+
+To see the parameter's importance for welfare, it is easy to demonstrate that (\ref{welfare}) implies that $\theta$ represents the inverse of the elasticity of welfare with respect to domestic expenditure shares:
+\begin{eqnarray}
+\label{welfare_gains}
+\log(P_n)=-\frac{1}{\theta}\log\left(\frac{X_{nn}}{X_n}\right)
+\end{eqnarray}
+Hence, decreasing the domestic expenditure share by one percent generates a $(1/\theta)/100$-percent increase in consumer welfare. Thus, in order to measure the impact of trade policy on welfare, it is sufficient to obtain data on realized domestic expenditures and an estimate of the elasticity of trade.
+
+Given $\theta$'s impact on trade flows and welfare, this elasticity is absolutely critical in any quantitative study of international trade.
+
+\section{Estimating $\theta$: EK's Approach}\label{sec:ek_estimate}
+
+Equation (\ref{main_eq}) suggests that one could easily estimate $\theta$ if one had data on trade shares, aggregate prices, and trade costs. The key issue is that trade costs are not observed. In this section, we discuss how EK approximate trade costs and estimate $\theta$. Then, we characterize the statistical properties of EK's estimator. The key result is Proposition \ref{prop:biased}, which states that their estimator is biased and overestimates the elasticity of trade with a finite sample of prices. The second result is Proposition \ref{prop:consistency}, which states that EK's estimator is a consistent and an asymptotically unbiased estimator of the elasticity of trade.
+
+\subsection{Approximating Trade Costs}
+
+The main problem with estimating $\theta$ is that one must disentangle $\theta$ from trade costs, which are not observed. EK propose approximating trade costs using \emph{disaggregate} price information across countries. In particular, the maximum price difference across goods between two countries bounds the bilateral trade cost, which solves the indeterminacy issue.
+
+To illustrate this argument, suppose that we observe the price of good $\ell$ across locations, but we do not know its country of origin.\footnote{This is the most common case, though \citet{donaldson09} exploits a case where he knows the place of origin for one particular good, salt. He argues convincingly that in India, salt was produced in only a few locations and exported everywhere; thus, the relative price of salt across locations identifies the trade friction.} We know that the price of good $\ell$ in country $n$ relative to country $i$ must satisfy the following inequality:
+\begin{eqnarray}
+\frac{p_n(\ell)}{p_i(\ell)} \leq \tau_{ni}.
+\label{ineq_one}
+\end{eqnarray}
+That is, the relative price of good $\ell$ must be less than or equal to the trade friction. This inequality must hold because if it does not, then $p_n(\ell) \ > \ \tau_{ni}p_i(\ell)$ and an agent could import $\ell$ at a lower price. Thus, the inequality in (\ref{ineq_one}) places a lower bound on the trade friction.
+
+Improvements on this bound are possible if we observe a sample of $L$ goods across locations. This follows by noting that the \emph{maximum} relative price must satisfy the same inequality:
+\begin{eqnarray}
+\max_{\ell \in L}\left\{\frac{p_n(\ell)}{p_i(\ell)}\right\} \leq \tau_{ni}.
+\label{ineq_two}
+\end{eqnarray}
+This suggests a way to exploit \emph{disaggregate} price information across countries and to arrive at an estimate of $\tau_{ni}$ by taking the maximum of relative prices over goods. Thus, EK approximate $\tau_{ni}$, in logs, by
+\begin{eqnarray}
+\log \hat{\tau}_{ni}(L) = \max_{\ell \in L} \left\{ \log \left(p_n(\ell)\right) - \log \left(p_i(\ell)\right) \right \}, \label{tau_est}
+\end{eqnarray}
+\noindent where the ``hat'' denotes the approximated value of $\tau_{ni}$ and $(L)$ indexes its dependence on the sample size of prices.
+
+\subsection{Estimating the Elasticity}
+
+Given the approximation of trade costs, EK derive an econometric model that corresponds to (\ref{log_elasticity_trade}). For a sample of $L$ goods, they estimate a parameter, $\beta$, using a method of moments estimator, which takes the ratio of the average of the left-hand side of (\ref{log_elasticity_trade}) to the average of the term in the square bracket of the right-hand side of (\ref{log_elasticity_trade}), where the averages are computed across all country pairs.\footnote{They also propose two other estimators. One uses the approximation in (\ref{tau_est}) and the gravity equation in (\ref{grav1}). We show in Appendix C that our arguments are applicable to this approach as well. The other approach does not use disaggregate price data and we discuss it later.} Mathematically, their estimator is:
+\begin{eqnarray}
+\label{beta}
+\label{plim_prove}
+&&\hat\beta=-\frac{\sum_{n}\sum_{i}\log\left(\frac{X_{ni}/X_n}{X_{ii}/X_i}\right)}{\sum_{n}\sum_{i}\left(\log \hat{\tau}_{ni}(L)+ \log \hat{P}_i - \log \hat{P}_n \right)},\\
+\nonumber\\
+&&\mbox{where} \ \ \ \  \log \hat{\tau}_{ni}(L) = \max_{\ell \in L} \left\{ \log p_n(\ell) - \log p_i(\ell) \right \},  \nonumber \\
+\nonumber \\
+&&\mbox{and}  \ \ \ \ \log \hat{P}_i = \frac{1}{L} \sum_{\ell = 1}^{L} \log(p_i(\ell)). \nonumber
+\end{eqnarray}
+The value of $\beta$ is EK's preferred estimate of the elasticity $\theta$.\footnote{To alleviate measurement error, EK use the second-order statistic over price differences rather than the first-order statistic. Our estimation approach is robust to either specification.} Throughout, we will denote by $\hat\beta$ the estimator defined in equation (\ref{beta}) to distinguish it from the value $\theta$. As discussed, the second line of expression (\ref{plim_prove}) approximates the trade cost. The third line approximates the aggregate price indices. The top line represents a rule that combines these statistics, together with observed trade flows, in an attempt to estimate the elasticity of trade.
+
+\subsection{Properties of EK's Estimator}
+
+%Before describing the properties of the estimator $\hat\beta$, we want to be clear about the sources of error in equation (\ref{plim_prove}). Bilateral trade flows are observable statistics. However, trade barriers and price indices are approximated from price data using the last two equations in (\ref{plim_prove}). Hence, these objects are potentially measured with error. Furthermore, the model tells us what the theoretical source of error is.\footnote{In practice, there may be other sources of measurement error in the data. We address these issues in the estimation section of the paper.}  In particular, the model suggests that prices are realizations of random variables. Hence, in accordance with the model, we treat the micro-level prices as being randomly sampled from the equilibrium distribution of prices. This interpretation is consistent with EK's interpretation. As it turns out, the parametrization of productivity draws in equation (\ref{frech_dist}), marginal cost pricing, and equation (\ref{min_price}) are sufficient to characterize the price distributions in the model. Once we accomplish that, it is straightforward to characterize the properties of the estimator in (\ref{plim_prove}).
+
+
+
+\textbf{Assumption regarding the key source of randomness.} Before describing the properties of the estimator $\hat\beta$, we state the assumptions that we maintain throughout the theoretical analysis regarding the sources of error in equation (\ref{plim_prove}). Following EK, we assume that trade barriers and price indices are approximated from price data using the last two equations in (\ref{plim_prove}). These two objects are potentially measured with error because of the approximation. Hence, approximation error is the key source of error that we examine in the theoretical analysis. In the model, prices are realizations of random variables, thus we treat the micro-level prices as being randomly sampled from the equilibrium distribution of prices. This allows us to theoretically characterize the properties of the approximation error and in turn to derive the properties of the estimator $\hat{\beta}$ in expression (\ref{plim_prove}).
+
+In practice, there may be other sources of error. First, trade shares also appear in equation (\ref{plim_prove}). Throughout the theoretical analysis, we assume that bilateral trade shares are observable statistics that are not measured with error. Therefore, we treat them as constants. We recognize that in practice this may not be the case, so we relax this assumption in the quantitative analysis. Second, prices may be measured with error in the data. Consequently, in the quantitative analysis in Section \ref{sec:measurement_error}, we consider a number of sources of price variation outside of the model. We find that different sources of price variation affect the estimates of the trade elasticity in different directions. Crucially, however, approximation error in trade barriers remains to be the key source of bias in the estimates. Therefore, we turn to the theoretical characterization of the approximation error next.
+
+%the model tells us about the theoretical source of terror is: \footnote{In practice, there may be other sources of measurement error in the data. We address these issues in the estimation section of the paper.}
+%In the arguments below  The parametrization of productivity draws in equation (\ref{frech_dist}), marginal cost pricing, and equation (\ref{min_price}) describe the price distributions in the model.
+
+Given our assumption that the prices are randomly sampled from the equilibrium distribution, we define the following objects.
+\begin{df}
+\label{def1}Define the following objects:
+\begin{enumerate}
+\item Let $\epsilon_{ni} =\theta[ \log p_n  - \log p_i]$ be the log price difference of a good between country $n$ and country $i$, multiplied by $\theta$.
+
+\item Let the vector $\textbf{S} = \{\log(T_1w_1^{-\theta}), \ldots, \log(T_Nw_N^{-\theta})\}$.
+
+\item Let the vector $\tilde{\boldsymbol{\tau_i}} = \{\theta \log(\tau_{i1}), \ldots, \theta \log(\tau_{iN}) \}$ and let $\tilde{\boldsymbol{\tau}}$ be a matrix with typical row, $\tilde{\boldsymbol{\tau_i}}$.
+
+\item Let $g(p_i;\textbf{S},\tilde{\boldsymbol{\tau_i}})$ be the pdf of prices of individual goods in country $i$, $p_i\in(0,\infty)$.
+
+\item Let $f_{\max}(\epsilon_{ni};L,\textbf{S},\tilde{\boldsymbol{\tau_i}},\tilde{\boldsymbol{\tau_n}})$ be the pdf of $\max(\epsilon_{ni})$, given prices of a sample $L\geq 1$ of goods.
+
+\item Let $\mathbb{X}$ denote the normalized trade share matrix, with typical $(n,i)$ element, $\log\left(\frac{X_{ni}/X_n}{X_{ii}/X_i}\right)$.
+\end{enumerate}
+\end{df}
+The first item is simply the scaled log price difference. As we show in Appendix 2.1, this happens to be convenient to work with, as the second line in (\ref{plim_prove}) can be restated in terms of scaled log price differences across locations. The second item is a vector in which each element is a function of a country's technology parameter and wage rate. The third item is a matrix of log bilateral trade costs, scaled by $\theta$, with a typical vector row containing the trade costs that country $i$'s trading partners incur to sell there. The fourth item specifies the probability distribution of prices in each country. The fifth item specifies the probability distribution over the maximum scaled log price difference and its dependence on the sample size of prices of $L$ goods. We derive this distribution in Appendix 2.1. Finally, the sixth item summarizes trade data, which we view as observable statistics.
+
+\subsection{$\hat\beta$ is a Biased Estimator of $\theta$}
+\label{sec:biased_estimate}
+
+Given these definitions, we establish two intermediate results and then state Proposition \ref{prop:biased}, which characterizes the expectation of $\hat\beta$, shows that the estimator is biased and discusses the reason why the bias arises. The proof of Proposition \ref{prop:biased} can be found in Appendix 2.1.
+
+The first intermediate result is the following:
+\begin{lemma}
+\label{lemma1}Consider an economy of $N$ countries with a sample of $L$ goods' prices observed. The expected value of the maximal difference of logged prices for a pair of countries is strictly less than the true trade cost,
+\begin{align}
+\label{tc_inequality}
+\Psi_{ni}(L;\textbf{S},\tilde{\boldsymbol{\tau_i}},\tilde{\boldsymbol{\tau_n}})&\equiv \frac{1}{\theta}\int_{-\theta\log(\tau_{in})}^{\theta\log(\tau_{ni})}  \epsilon_{ni} f_{\max}(\epsilon_{ni};L,\textbf{S},\tilde{\boldsymbol{\tau_i}},\tilde{\boldsymbol{\tau_n}})d\epsilon_{ni} \ < \ \log(\tau_{ni}).
+\end{align}
+The difference in the expected values of logged prices for a pair of countries equals the difference in the price parameters, $\Phi$, of the two countries,
+\begin{eqnarray}
+\label{exp_price_diff}
+\Omega_{ni}(\textbf{S},\tilde{\boldsymbol{\tau_n}},\tilde{\boldsymbol{\tau_i}})\equiv \int_{0}^{\infty} \log(p_n) g(p_n;\textbf{S},\tilde{\boldsymbol{\tau_n}})dp_n-\int_{0}^{\infty} \log(p_i) g(p_i;\textbf{S},\tilde{\boldsymbol{\tau_i}})dp_i=\frac{1}{\theta} \left(\log \Phi_i - \log \Phi_n \right),
+\end{eqnarray}
+with $\Phi_n$ defined in equation (\ref{P_ek}).
+\end{lemma}
+The key result in Lemma \ref{lemma1} is the strict inequality in (\ref{tc_inequality}). It says that $\Psi_{ni}$, the expected maximal log price difference, is less than the true log trade cost. Two forces drive this result. First, with a finite sample $L$ of prices, there is positive probability that the maximal log price difference will be less than the true log trade cost. In other words, there is always a chance that the weak inequality in (\ref{tau_est}) does not bind. Second, there is zero probability that the maximal log price difference can be larger than the true log trade cost. This comes from optimality and the definition of equilibrium. These two forces imply that the expected maximal log price difference lies strictly below the true log trade cost.
+
+The second result in Lemma \ref{lemma1} is that the difference in the expected log prices in expression (\ref{exp_price_diff}) equals the difference in the aggregate price parameters defined in equation (\ref{P_ek}). This result is important because it implies that any source of bias in the estimator $\hat\beta$ does not arise because of systematic errors in approximating the price parameter $\Phi$.
+
+The next intermediate step computes the expected value of $1/\hat\beta$. This step is convenient because the inverse of $\hat\beta$ is linear in the random variables that Lemma \ref{lemma1} characterizes.
+\begin{lemma}
+\label{lemma2}Consider an economy of $N$ countries with a sample of $L$ goods' prices observed. The expected value of $1/\hat{\beta}$ equals:
+\begin{align}
+\label{proportionality_lemma}
+E\left(\frac{1}{\hat\beta}\right) \ = \  \frac{1}{\theta} \left\{-\frac {\sum_{n}\sum_{i}(\theta \Psi_{ni}(L)- (\log \Phi_i - \log \Phi_n))}
+{\sum_{n}\sum_{i}\log\left(\frac{X_{ni}/X_n}{X_{ii}/X_i}\right)}\right\} \ < \ \frac{1}{\theta},
+\end{align}
+with
+\begin{align}
+\label{inequality_lemma}
+1 \  > \  \left\{-\frac {\sum_{n}\sum_{i}(\theta\Psi_{ni}(L) - (\log \Phi_i - \log \Phi_n))}
+{\sum_{n}\sum_{i}\log\left(\frac{X_{ni}/X_n}{X_{ii}/X_i}\right)}\right\} \ > \ 0.
+\end{align}
+\end{lemma}
+This results says that the expected value of the inverse of $\hat\beta$ equals the inverse of the elasticity multiplied by the bracketed term of (\ref{inequality_lemma}). The bracketed term is the expected maximal log price difference minus the difference in expected log prices, both scaled by theta, and divided by trade data. This term is strictly less than one because $\Psi_{ni}$ does not equal the log trade cost, as established in Lemma \ref{lemma1}. If $\Psi_{ni}$ did equal the log trade cost, then the bracketed term would equal one, and the expected value of the inverse of $\hat\beta$ would be equal to the inverse of $\theta$. This can be seen by examining the relation between $\Phi$'s and aggregate prices $P$'s in (\ref{P_ek}), and by substituting expression (\ref{log_elasticity_trade}) into (\ref{inequality_lemma}).
+
+Inverting (\ref{proportionality_lemma}) and then applying Jensen's inequality establishes the main result: EK's estimator is biased above the true value of $\theta$.
+\begin{prp}
+\label{prop:biased}Consider an economy of $N$ countries with a sample of $L$ goods' prices observed. The expected value of $\hat\beta$ is
+\begin{align}
+\label{proportionality}
+E\left(\hat\beta\right) \ \geq \ \theta \times \left\{-\frac{\sum_{n}\sum_{i}\log\left(\frac{X_{ni}/X_n}{X_{ii}/X_i}\right)}
+{\sum_{n}\sum_{i}( \theta\Psi_{ni}(L) - (\log \Phi_i - \log \Phi_n) )} \right \} \ > \ \theta.
+\end{align}
+\end{prp}
+The proposition establishes that the estimator $\hat\beta$ provides estimates that exceed the true value of the elasticity $\theta$. The weak inequality in (\ref{proportionality}) comes from applying Jensen's inequality to the strictly convex function of $\hat\beta$, $1/\hat\beta$. The strict inequality follows from Lemma \ref{lemma1}, which argued that the expected maximal logged price difference is strictly less than the true trade cost. Thus, the bracketed term in expression (\ref{proportionality}) is always greater than one and the elasticity of trade is always overestimated.
+
+\subsection{Consistency and Asymptotic Bias}
+
+While the estimator $\hat\beta$ is biased in a finite sample, the asymptotic properties of EK's estimator are worth understanding. Proposition \ref{prop:consistency} summarizes the result. The proof to Proposition \ref{prop:consistency} can be found in Appendix 2.2.
+\begin{prp}
+\label{prop:consistency}
+Consider an economy of $N$ countries. The maximal log price difference is a consistent estimator of the trade cost,
+\begin{align}
+\label{tc plim}
+%\plim_{L\rightarrow\infty}\ \log\hat{\tau}_{ni}^L=
+\plim_{L\rightarrow\infty}\ \max_{\ell=1,...,L} (\log p_n(\ell)-\log p_i(\ell))=\log{\tau}_{ni}.
+\end{align}
+The estimator $\hat\beta$ is a consistent estimator of $\theta$,
+\begin{align}
+\label{consistent}
+\plim_{L\rightarrow\infty}\ \hat\beta\left(L;\textbf{S},\tilde{\boldsymbol{\tau}},\mathbb{X}\right)=\theta,
+\end{align}
+and the asymptotic bias of $\hat\beta$ is zero,
+\begin{align}
+\label{nobias}
+\lim_{L\rightarrow\infty}E\left[\hat\beta\left(L;\textbf{S},\tilde{\boldsymbol{\tau}},\mathbb{X}\right)\right] - \theta = 0.
+\end{align}
+\end{prp}
+There are three elements to Proposition \ref{prop:consistency}, each building on the previous one. The first statement says that the probability limit of the maximal log price difference equals the true log trade cost between two countries. Intuitively, this says that as the sample size becomes large, the probability that the weak inequality in (\ref{ineq_two}) does not bind becomes vanishingly small.
+
+The second statement says that the estimator $\hat\beta$ converges in probability to the elasticity of trade---i.e., $\hat\beta$ is a consistent estimator of $\theta$. The reasons are the following. Because the maximal log price difference converges in probability to the true log trade cost, and the difference in averages of log prices converges in probability to the difference in log price parameters, $1/\hat\beta$ converges in probability to $1/\theta$. Since $1/\hat\beta$ is a continuous function of $\hat\beta$ (with $\hat\beta > 0$), $\hat\beta$ must converge in probability to $\theta$ because of the preservation of convergence for continuous functions (see \citet{hayashi}).
+
+The third statement says that, in the limit, the bias is eliminated. This follows immediately from the argument that $\hat\beta$ is a consistent estimator of $\theta$ (see \citet{hayashi}).
+
+The results in Proposition \ref{prop:consistency} are important for two reasons. First, they suggest that with enough data, EK's estimator provides informative estimates of the elasticity of trade. However, as we will show in the next section, Monte Carlo exercises suggest that the data requirements are extreme. Second, because EK's estimator has desirable asymptotic properties, it underlies the simulation-based estimator that we develop in Section \ref{sec:est_approach}.
+
+\section{How Large is the Bias? How Much Data is Needed?}\label{sec:monte_carlo}
+
+Proposition \ref{prop:biased} shows that EK's estimator is biased in a finite sample. Many estimators have this property, which raises the question: How large is the bias? Furthermore, even if the magnitude of the bias is large, perhaps moderate increases in the sample size are sufficient to eliminate the bias (in practical terms). The natural question is: How much data is needed to achieve that?
+
+To answer these questions, we perform Monte Carlo experiments in which we simulate trade flows and samples of micro-level prices under a known $\theta$. Then, we apply EK's estimator (and other estimators) to the artificial data. To simulate trade flows that mimic the data, we use the simulation procedure that is described in Steps 1-3 in Section \ref{simmulation} below. We estimate all the parameters necessary to simulate the model (except for $\theta$) using the trade data from EK. We set the true value of $\theta$ equal to 8.28, which is EK's estimate when employing the approach described above. We then randomly sample prices from the simulated data and we apply EK's estimation to the simulated trade flows and prices. The sample size of prices is set to $L = 50$, which is the number of prices EK had access to in their data set.
+
+\begin{table}[!h]
+\refstepcounter{table}
+\renewcommand{\arraystretch}{2}
+\setlength {\tabcolsep}{2.75mm}
+\begin{center}\label{tb_mc_rslts}
+\begin{tabular}[t]{l c c}
+\multicolumn{3}{c}{\textbf{Table \ref{tb_mc_rslts}: Monte Carlo Results, \ True $\theta$ = 8.28}}
+\\
+\hline
+\hline
+Approach  & Mean Estimate of $\theta$ \ (S.E.) & Median Estimate of $\theta$\\
+\hline
+EK's Estimator & 12.5 \ (0.06)  & 12.5            \\
+Least Squares & 12.1 \ (0.06)   & 12.1             \\
+\hline
+True Mean $\tau$ = 1.83 & Estimated Mean $\tau$ = 1.50 & \\
+\hline
+\end{tabular}
+\\[0.75ex]
+\parbox{5.45in}{\footnotesize  \textbf{Note:} S.E. is the standard error of the mean. In each simulation there are 19 countries and 500,000 goods. Only 50 realized prices are randomly sampled and used to estimate $\theta$. 10000 simulations performed. }
+\end{center}
+\end{table}
+
+Table \ref{tb_mc_rslts} summarizes our findings. The columns of Table \ref{tb_mc_rslts} present the mean and median estimates of $\beta$ over 1000 simulations. The rows present two different estimation approaches: method of moments and least squares with suppressed constant. Also reported are the true average trade cost and the estimated average trade cost using maximal log price differences.
+
+The first row in Table \ref{tb_mc_rslts} shows that the estimates using EK's approach are larger than the true $\theta$ of 8.28, which is consistent with Proposition \ref{prop:biased}. The key source of bias in Proposition \ref{prop:biased} was that the estimates of the trade costs were biased downward, as Lemma \ref{lemma1} argued. The final row in Table \ref{tb_mc_rslts} illustrates that the estimated trade costs are below the true trade costs, where the latter correspond to an economy characterized by a true elasticity of trade among 19 OECD countries of 8.28.
+
+The second row in Table \ref{tb_mc_rslts} reports results using a least squares estimator with the constant suppressed rather than the method of moments estimator.\footnote{We have found that including a constant in least squares results in slope coefficients that either underestimate or overestimate the elasticity depending on the level of trade costs in the simulation. Hence, including a constant term does not resolve the bias.}  Similar to the method of moments estimates, the least squares estimates are substantially larger than the true value of $\theta$. This is important because it suggests that the key problem with EK's approach is not the method of moment estimator per se, but, instead, the poor approximation of the trade costs.
+
+The final point to note is that the magnitude of the bias is substantial. The underlying $\theta$ was set equal to 8.28, and the estimates in the simulation are between 12.1 and 12.5. Equation (\ref{welfare_gains}) can be used to formulate the welfare cost of the bias. It suggests that the welfare gains from trade will be underestimated by 50 percent as a result of the bias.
+
+While Table \ref{tb_mc_rslts} reflects the results from a particular calibration of the model to trade flow data, one would like to know how these results depend on the particulars of the economy like trade costs.  Inspection of (\ref{proportionality_lemma}) and the integral in (\ref{tc_inequality}) shows that the bias will depend on trade flows and the level of trade costs in the economy. For example, as all trade costs approach one, the bias will disappear holding fixed the sample size of prices. The reason is that as trade costs approach one, all goods become traded and hence the maximal price difference---even in a small sample---will likely reflect the true trade friction.
+\begin{figure}[t!]
+\includegraphics[scale=0.5]{bias_tau_v4.eps}
+\caption{EK's Estimator and the Level of Trade Costs, True $\theta = 8.28$}
+\label{fig.bias_tau}
+\end{figure}
+
+Figure \ref{fig.bias_tau} shows how the bias behaves when trade costs are increasing away from one and the economy approaches autarky. To generate this figure, we keep the true $\theta$ equal to 8.28 and we uniformly scale the trade costs from the baseline simulation up or down. We then apply EK's estimation approach to the simulated data (now indexed by the level of trade costs) with the sample size of prices set equal to 50. The x-axis reports the average trade cost across all the countries and the y-axis reports the associated estimate of $\theta$.
+
+Figure \ref{fig.bias_tau} shows that, as trade costs increase, EK's estimate of $\theta$ increases and hence the bias increases. For example, when the average trade cost equals about three, EK's estimate of $\theta$ is 16---almost two times larger than the true $\theta$ of 8.28. In contrast, in the baseline simulation when average trade costs are about 1.8, EK's estimate is only fifty percent larger at 12.5. The intuition for this outcome is straightforward. As trade costs increase, more goods are likely to become non-traded and hence it is more likely that many of the prices in the sample are not informative about trade costs.
+
+How much data is needed to eliminate the bias? Table \ref{tb:mc_rslts_incs_goods} provides a quantitative answer. It performs the same Monte Carlo experiments described above, as the sample size of micro-level prices varies.
+\begin{table}[!htbp]
+\refstepcounter{table}
+\renewcommand{\arraystretch}{1.75}
+\setlength {\tabcolsep}{4mm}
+\begin{center}\label{tb:mc_rslts_incs_goods}
+\begin{tabular}[t]{l c c c}
+\multicolumn{4}{c}{\textbf{Table \ref{tb:mc_rslts_incs_goods}: Increasing the Sample of Prices Reduces the Bias, \ True $\theta$ = 8.28}}
+\\
+\hline
+\hline
+Sample Size of Prices  & Mean $\theta$ \ (S.E.) & Median $\theta$ & Mean $\tau$\\
+\hline
+50 & 12.51 \ (0.06)   & 12.51          & 1.50   \\
+500 & \phantom{1}9.42 \ (0.02)   & \phantom{1}9.42  & 1.69           \\
+5,000 & \phantom{1}8.47 \ (0.01)  & \phantom{1}8.47 & 1.80           \\
+50,000 & \phantom{1}8.30 \ (0.01)  & \phantom{1}8.30 & 1.83          \\
+\hline
+\end{tabular}
+\\[0.75ex]
+\parbox{5.7in}{\footnotesize  \textbf{Note:} S.E. is the standard error of the mean. In each simulation, there are 19 countries and 500,000 goods. The results reported use least squares with the constant suppressed. 10000 simulations performed. True Mean $\tau$ = 1.83.}
+\end{center}
+\end{table}
+
+Table \ref{tb:mc_rslts_incs_goods} shows that, as the sample size becomes larger, the estimate of $\theta$ becomes less biased and begins to approach the true value of $\theta$. The final column shows how the reduction in the bias coincides with the estimates of the trade costs becoming less biased. This is consistent with the arguments of Proposition \ref{prop:consistency}, which describes the asymptotic properties of this estimator.
+
+We should note that the rate of convergence is extremely slow. The exercise allows us to conclude that the data requirements to minimize the bias in estimates of the elasticity of trade (in practice) are extreme. This motivates our alternative estimation strategy in the next section.
+
+
+\section{A New Approach To Estimating $\theta$ }\label{sec:est_approach}
+
+In this section, we develop a new approach to estimating $\theta$ and we discuss its performance on simulated data.
+
+
+\subsection{The Idea}\label{sec:idea}
+
+Our idea is to exploit the structure of the model as follows. First, in Section \ref{simmulation}, we show how to recover all the parameters that are needed to simulate the model up to the unknown scalar $\theta$ from trade data only. These parameters are the vector $\textbf{S}$ and the scaled trade costs in matrix $\tilde{\boldsymbol{\tau}}$. Given these values, we can simulate moments from the model as functions of $\theta$.
+
+Second, Lemma \ref{lemma1} and Lemma \ref{lemma2} actually suggest which moments are informative. Inspection of the integral (\ref{tc_inequality}) and the density $f_{max}$ in (b.28) (in Appendix B) leads to the observation that the expected maximal log price difference monotonically varies with $\theta$ and linearly with $1/{\theta}$. This follows because of the previous point---the vector $\textbf{S}$ and scaled log trade costs $\tilde{\boldsymbol{\tau}}$ are pinned down by trade data, and these values completely determine all parameters in the integral (\ref{tc_inequality}), except the value ${1}/{\theta}$ lying outside the integral. Similarly, the integral (\ref{exp_price_diff}) is completely determined by these values and scaled in the same way by ${1}/{\theta}$ as (\ref{tc_inequality}) is.
+
+\begin{figure}[t!]
+\includegraphics[scale=0.5]{theta_plot_slide_3.eps}
+\caption{Schematic of Estimation Approach}
+\label{fig.est_approach}
+\end{figure}
+
+These observations have the following implication. While the maximum log price difference is biased below the true trade cost, if $\theta$ is large, then the value of the maximum log price difference will be small. Similarly, if $\theta$ is small, then the value of the maximum log price difference will be large. A large or small maximum log price difference will result in a small or large estimate of ${\beta}$. This suggests that the estimator $\hat{\beta}$ will vary monotonically with the true value of $\theta$. Furthermore, this suggests that ${\beta}$ is an informative moment with regard to $\theta$.\footnote{Lemma \ref{lemma1} established that the expected value of $1/\hat{\beta}$ is proportional to ${1}/{\theta}$. Hence, modulo effects from Jensen's inequality, this suggests that $\hat{\beta}$ is roughly proportional to $\theta$. Figure \ref{fig.est_approach} confirms this.}
+
+Figure \ref{fig.est_approach} quantitatively illustrates this intuition by plotting $\beta(\theta)$ from simulations as we varied $\theta$. It is clear that $\beta$ is a biased estimator because these values do not lie on the $45^o$ line. However, $\beta$ varies near linearly with $\theta$.  These observations suggest an estimation procedure that matches the data moment $\beta$ to the moment $\beta(\theta)$ implied by the simulated model under a known $\theta$.\footnote{Another reason for using the moment $\beta$ is that $\hat\beta$ is a consistent estimator of $\theta$, as argued in Proposition \ref{prop:consistency}.} Because of the monotonicity implied by our arguments, the known $\theta$ must be the unique value that satisfies the moment condition specified.
+
+
+\subsection{Simulation Approach}\label{simmulation}
+
+In this subsection, we show how to recover all parameters of interest up to the unknown scalar $\theta$ from trade data only, and then we describe our simulation approach. This provides the foundation for the simulated method of moments estimator that we propose.
+
+\textbf{Step 1.}---We estimate the parameters for the country-specific productivity distributions and trade costs (scaled by $\theta$) from bilateral trade-flow data. We follow closely the methodologies proposed by EK and \citet{waugh}. First, we derive the theoretical gravity equation from expression (\ref{trdshrs}) by dividing the bilateral trade share by the importing country's home trade share,
+\begin{eqnarray}
+\log\left(\frac{X_{ni}/X_n}{X_{nn}/X_{n}}\right) = S_i - S_n -
+\theta \log \tau_{ni},\label{grav1theory}
+\end{eqnarray}
+\noindent where $S_i$ is defined as $\log\left[T_i w_i^{-\theta} \right]$ and is the same value in the parameter vector $\textbf{S}$ in Definition \ref{def1}. Note that (\ref{grav1theory}) is a different equation than expression (\ref{main_eq}), which is derived by dividing the bilateral trade share by the exporting country's home trade share, and is used to estimate $\theta$.
+
+The goal is to estimate the objects $S_i$ for all $i=1,...,N$ and $\theta\log\tau_{ni}$ for all country pairs $n$ and $i$ such that $n\neq i$. To do so we first derive an empirical gravity equation that corresponds to the theoretical expression in (\ref{grav1theory}). It is given by
+\begin{eqnarray}
+\log\left(\frac{X_{ni}/X_n}{X_{nn}/X_{n}}\right) = \hat S_i - \hat S_n -
+\hat \theta \log \hat \tau_{ni}+ \nu_{ni}.\label{grav1}
+\end{eqnarray}
+$\hat S_i$'s are recovered as the coefficients on country-specific dummy variables given the restrictions on how trade costs can covary across countries. Trade costs take the following functional form
+\begin{eqnarray}
+\log\hat\tau_{ni} = d_{k} + b_{ni} + ex_i.
+\label{grav2}
+\end{eqnarray}
+\noindent Here, trade costs are a logarithmic function of distance, where $d_k$ with $k = 1,2,...,6$ is the effect of distance between country $i$ and $n$ lying in the $k$-th distance interval.\footnote{Intervals are in miles: $[0,375)$; $[375,750)$; $[750,1500)$; $[1500,3000)$; $[3000,6000)$; and $[6000,\mbox{maximum}]$. An alternative to specifying a trade-cost function is to recover scaled trade costs as a residual using equation (\ref{main_eq}), trade data, and measures of aggregate prices as in \citet{waugh06a}. Section \ref{sec:tc_func} shows that our results are robust to using this alternative approach.} $b_{ni}$ is the effect of a shared border in which $b_{ni}=1$ if country $i$ and $n$ share a border and zero otherwise.
+
+The term $ex_i$ is an exporter fixed effect which allows the trade-cost level to vary depending upon the exporter. This object can be separately identified from $\hat S_i$. The key observation is that the $\hat S$'s are a common component to a country that appears in the estimating equation both when the country is exporting \emph{and} importing. The exporter fixed effect appears only when that country is on the exporting side. This distinction then identifies the difference between a high exporting cost versus the $\hat S$.
+
+To see the argument formally, combine equation (\ref{grav1}) and (\ref{grav2}) to obtain
+\begin{eqnarray*}
+\log\left(\frac{X_{ni}/X_n}{X_{nn}/X_{n}}\right) &=& \hat S_i - \hat S_n -
+\hat\theta \left(d_{k} + b_{ni} + ex_i\right) + \nu_{ni}\\
+ &=& \bar S_i - \hat{S}_n  -
+\hat\theta (d_{k} + b_{ni} ) + \nu_{ni},
+\end{eqnarray*}
+where $\bar S_i = \hat S_i-\hat\theta ex_i$. Abstracting from distance and border effects, we estimate two distinct effects per country (up to a normalization): An importer fixed effect $\hat S_n$ and an exporter fixed effect $\bar{S}_i$. Then to recover the exporter specific component of trade costs, we use the restriction that $\hat S_i - \bar{S}_i = \hat S_i - (\hat S_i - \theta ex_i) = \theta ex_i$. Thus, the difference in the country specific importer and exporter fixed effects tells us about the exporter specific component of the trade cost.
+
+The exporter-specific trade-cost function was introduced by \citet{waugh} who shows that including this term helps EK-type models match cross-country variation in trade flows and aggregate prices. Given that price data are central to our analysis, we wanted to ensure that the model replicates these features of the data. In Section \ref{sec:tc_func}, we show that using importer fixed effects (as in EK) or aggregate price data to exactly identify trade costs does not change our estimates by economically meaningful amounts. Finally, our results are robust to incorporating bilateral colonial, language, and legal origin ties as well as countries' geographical attributes.
+
+We assume that $\nu_{ni}$ reflects other factors and it is orthogonal to the regressors and normally distributed with mean zero and standard deviation $\sigma_{\nu}$. This error term simply captures the fact that the observed trade flows are not entirely explained by the gravity equation of trade in practice.\footnote{We explored a specification in which we included the error term in expression (\ref{grav2}) instead of (\ref{grav1}), i.e. a structural shock to trade barriers rather than measurement error. The results were nearly identical to our benchmark estimates.} We use least squares to estimate equations (\ref{grav1}) and (\ref{grav2}). Finally, we explored estimating equations (\ref{grav1}) and (\ref{grav2}) with the Poisson pseudo-maximum-likelihood estimator advocated by \citet{tenreyro} and we found that our results for our estimate of $\theta$ are robust to this approach.
+
+%\medskip
+
+\textbf{Step 2.}---The parameter estimates obtained from the first-stage gravity regression are sufficient to simulate trade flows and micro-level prices up to a constant, $\hat\theta$.
+
+The relationship is obvious in the estimation of trade barriers since $\log \hat\tau_{ni}$ is scaled by $\hat\theta$ in (\ref{grav1}). To see that we can simulate micro-level prices as a function of $\hat\theta$ only, notice that for any good $j$, the model implies that $p_{ni}(j)=\tau_{ni}w_i/z_i(j)$. Thus, rather than simulating productivities, it is sufficient to simulate the inverse of marginal costs of production $u_i(j)=z_i(j)/w_i$. In Appendix 2.3, we show that $u_i$ is distributed according to:
+\begin{eqnarray}
+M_i(u_i)=\exp\left(-\tilde{S}_iu_i^{-\theta}\right), \ \ \mbox{with} \ \ \tilde{S}_i =\exp(S_i) = T_i w_i^{-\theta}.
+\label{inv_mc}
+\end{eqnarray}
+Thus, having obtained the coefficients $\hat S_i$ from the first-stage gravity regression, we can simulate the inverse of marginal costs and prices.\footnote{Since the $\hat S$'s (and the $\hat\theta\log \hat\tau$'s) are sufficient to simulate the model, it is easy to see why the presence of intermediate goods, as in the original EK model, does not affect our estimates of $\theta$. Let $P_i$ denote the price index of tradable (intermediate) goods and let $1-\alpha$ be the intermediate goods share. Then, the gravity equation is identical to expression (\ref{grav1}), except that now $\tilde S_i=T_i (w_i^\alpha P_i^{1-\alpha})^{-\theta} $. The estimate of the $\tilde S$'s is the same whether the model has intermediates or not, thus the unit costs drawn from the distributions that reflect the $\tilde S$'s are exactly the same. All that changes is the interpretation of what the unit costs are composed of, but not the unit costs themselves. To see that the estimate of $\theta$ is unchanged, derive the trade shares for the model with intermediates, ${X_{ni}}/{X_n}={T_i\left(\tau_{ni}w_i^\alpha P_i^{1-\alpha}\right)^{-\theta}}/{\sum_{k=1}^NT_k(\tau_{nk}w_k)^{-\theta}}$. Dividing this expression by ${X_{ii}}/{X_i}$ obtains the same estimating equation for $\theta$ given by expression (\ref{main_eq}). What occurs is that the unit cost component, $w_i^\alpha P_i^{1-\alpha}$, ``differences out'', so that the presence of intermediates does not affect the moment that we use in our estimation.}
+
+To simulate the model, we assume that there are a large number (150,000) of potentially tradable goods. In Section \ref{sec:num_goods}, we discuss how we made this choice and the motivation behind it. For each country, the inverse marginal costs are drawn from the country-specific distribution (\ref{inv_mc}) and assigned to each good. Then, for each importing country and each good, the low-cost supplier across countries is found, realized prices are recorded, and aggregate bilateral trade shares are computed.
+
+%\medskip
+
+\textbf{Step 3.}---From the realized prices, a subset of goods common to all countries is defined and the subsample of prices is recorded -- i.e., we are acting as if we were collecting prices for the international organization that collects the data. We added disturbances to the predicted trade shares with the disturbances drawn from a mean zero normal distribution with the standard deviation set equal to the standard deviation of the residuals from Step 1.
+
+These steps then provide us with an artificial data set of micro-level prices and trade shares that mimic their analogs in the data. Given this artificial data set, we can then compute moments---as functions of $\theta$---and compare them to the moments in the data.
+
+\subsection{Estimation}
+
+We perform two estimations: an overidentified procedure with two moments and an exactly identified procedure with one moment. Below, we describe the moments we try to match and the details of our estimation procedure.
+
+\textbf{Moments.} Let $\hat\beta_k$ be EK's method of moment estimator defined in (\ref{plim_prove}) using the $k$th-order statistic over micro-level price differences. Then, the moments we are interested in are:
+\begin{align}
+\label{smm_regression}
+\beta_k=-\frac{\sum_{n}\sum_{i}\log\left(\frac{X_{ni}/X_n}{X_{ii}/X_i}\right)}{\sum_{n}\sum_{i}\left(\log \hat{\tau}^k_{ni}(L)+ \log \hat{P}_i - \log \hat{P}_n \right)}, \ \ \ k = 1,2
+\end{align}
+where $\hat{\tau}^k_{ni}(L)$ is computed as the $k$th-order statistic over $L$ micro-level price differences between countries $n$ and $i$. In the exactly identified estimation, we use $\beta_1$ as the only moment.
+
+We denote the simulated moments by $\beta_1(\theta,u_s)$ and $\beta_2(\theta,u_s)$, which come from the analogous formula as in (\ref{smm_regression}) and are estimated from artificial data generated by following \textbf{Steps 1-3} above. Note that these moments are a function of $\theta$ and depend upon a vector of random variables $u_s$ associated with a particular simulation $s$. There are three components to this vector. First, there are the random productivity draws for production technologies for each good and each country.  The second component is the set of goods sampled from all countries. The third component mimics the residuals $\nu_{ni}$ from equation (\ref{grav1}), which are described in Section \ref{simmulation}.
+
+Stacking our data moments and averaged simulation moments gives us the following zero function:
+\begin{eqnarray}
+y(\theta) = \displaystyle \left[\begin{array}{c} \beta_1 - \frac{1}{S}\sum_{s=1}^{S}\beta_1(\theta,u_s) \vspace{.15in} \\
+\beta_2 - \frac{1}{S}\sum_{s=1}^{S}\beta_2(\theta,u_s)  \end{array} \right]. \label{estimator}
+\end{eqnarray}
+
+
+\textbf{Estimation Procedure.} We base our estimation procedure on the moment condition:
+\begin{eqnarray*}
+E\left[y(\theta_o)\right] = 0,
+\end{eqnarray*}
+\noindent where $\theta_o$ is the true value of $\theta$. Thus, our simulated method of moments estimator is:
+\begin{eqnarray}
+\hat{\theta} = \arg\min_{\theta} \left[y(\theta)'\ \textbf{W} \ y(\theta)\right],
+\end{eqnarray}
+\noindent where \textbf{W} is a $2\times2$ weighting matrix that we discuss below.
+
+The idea behind this moment condition is that, though $\beta_1$ and $\beta_2$ will be biased away from $\theta$, the moments $\beta_1(\theta,u_s)$ and $\beta_2(\theta,u_s)$ will be biased by the same amount when evaluated at $\theta_o$, in expectation. Viewed in this language, our moment condition is closely related to the estimation of bias functions discussed in \citet{smith_98} and to indirect inference, as discussed in \citet{smith_npd}. The key issue in \citet{smith_98} is how the bias function behaves. As we argued in Section \ref{sec:idea}, the bias is monotonic in the parameter of interest. Furthermore, Figure \ref{fig.est_approach} shows that the bias is basically linear, so it is well behaved.
+
+For the weighting matrix, we use the optimal weighting matrix suggested by \citet{french_guys96} for simulated method of moments estimators. Because the weighting matrix depends on our estimate of $\theta$, we use a standard iterative procedure outlined in the next steps.
+
+\textbf{Step 4.}---We start with the identity matrix as an initial guess for the weighting matrix $\textbf{W}^0$ and solve for $\hat{\theta}^0$. Then, given this value we simulate the model to generate a new estimate of the weighting matrix following the approach described in \citet{french_guys96}. With the new estimate of the weighting matrix we solve for a new $\hat{\theta}^1$. We perform this iterative procedure twice. We found that iterating until some convergence criteria gave effectively the same results but with substantial increases in computing time.
+
+%\medskip
+
+\textbf{Step 5.}---We compute standard errors using a parametric bootstrap technique. Given our estimate of $\theta$, estimates of trade costs and $S$s, and the error variance $\sigma_{\nu}$, we have a completely specified data generating process. We then proceed to simulate micro-level data, add error terms to the trade data, collect a sample of prices, and compute new estimates $\beta_{1}^b$ and $\beta_{2}^b$. Next, we estimate the model using moments $\beta_{1}^b$ and $\beta_{2}^b$ and obtain $\theta^b$. We repeat this procedure 100 times and construct standard errors accordingly.
+
+
+
+
+%We compute standard errors using a bootstrap technique. We compute residuals from the data and the fitted values obtained using the estimates in (\ref{smm_regression}), we resample the residuals with replacement, and we generate a new set of data using the fitted values. Using the data constructed from each resampling $b$, we computed new estimates $\beta_{1}^b$ and $\beta_{2}^b$.
+
+%\medskip
+
+%For each bootstrap $b$, we replace the moments $\beta_1$ and $\beta_2$ with bootstrap-generated moments $\beta_{1}^{b}$ and $\beta_{2}^{b}$. To account for simulation error, a new seed is set to generate a new set of model-generated moments. Defining $y^b(\theta)$ as the difference in moments for each $b$, as in (\ref{estimator}), we solve for:
+%\begin{eqnarray}
+%\hat{\theta}^{b} = \arg\min_{\theta} \left[y^{b}(\theta)'\ \textbf{W} \ y^{b}(\theta)\right].
+%\end{eqnarray}
+%\noindent We repeat this exercise 100 times and we compute the standard error of our estimate of $\hat{\theta}$ as:
+%\begin{eqnarray}
+%\mbox{S.E.}(\hat{\theta}) = \left[\frac{1}{100}\sum_{b=1}^{100}(\hat{\theta}^{b} - \hat{\theta})(\hat{\theta}^{b} - \hat{\theta})'\right]^{\frac{1}{2}}.
+%\end{eqnarray}
+%\noindent This procedure for constructing standard errors is similar in spirit to the approach of \citet{ekk08}, who use a simulated method of moments estimator to estimate the parameters of a trade model featuring micro-level heterogeneity from the performance of French exporters.
+
+%or the $\theta$ which minimizes the distance between the log of the regression coefficient in the data and average of the log of the regression coefficient on data from the simulated model. Note that since we have only one parameter and one moment the estimation problem is just identified and the choice of the appropriate weighting matrix is not important.  In the next section, we discuss why the particular choice of comparing the log of regression coefficients is an informative moment.
+
+\subsection{Performance on Simulated Data}
+
+In this section, we evaluate the performance of our estimation approach using simulated data when we know the true value of $\theta$.
+\begin{table}[!h]
+\refstepcounter{table}
+\renewcommand{\arraystretch}{1.5}
+\setlength {\tabcolsep}{3.65mm}
+\begin{center}\label{tb:fake_data_rslts}
+\begin{tabular}[t]{l c c}
+\multicolumn{3}{c}{\ \ \ \ \textbf{Table \ref{tb:fake_data_rslts}:} \textbf{Estimation Results With Artificial Data \ \ \ \ }}
+\\
+\hline
+\hline
+Estimation Approach  & \multicolumn{1}{c}{\textbf{True $\theta$ = 8.28}} & \multicolumn{1}{c}{\textbf{True $\theta$ = 4.00}}\\
+\hline
+Overidentified &  Mean Estimate of $\theta$ (S.E.) &  Mean Estimate of $\theta$ (S.E.) \\
+\hline
+SMM  & \phantom{1}8.27  \ (0.03)   & 4.00 \ (0.02)     \\
+Moment, $\beta_1$ & 12.52 \ (0.06)  &  6.04 \ (0.03)        \\
+Moment, $\beta_2$ & 15.20 \ (0.06)  &  7.34 \ (0.03)      \\
+\hline
+Exactly Identified & \\
+\hline
+SMM  & \phantom{1}8.28  \ (0.04)      & 4.00  \ (0.02)    \\
+Moment, $\beta_1$ & 12.52 \ (0.06) & 6.04  \ (0.03)         \\
+\hline
+\end{tabular}
+\\[0.75ex]
+\parbox{6in}{\footnotesize  \textbf{Note:} S.E. is the standard error of the mean. In each simulation there are 19 countries, 150,000 goods and 100 simulations performed. The sequence of artificial data is the same for both the overidentified case and exactly identified case.}
+\end{center}
+\end{table}
+
+Table \ref{tb:fake_data_rslts} presents the results from the following exercise. We generate two sets of artificial data on trade flows and disaggregate prices with true values of $\theta$ that are equal to 8.28 and 4.00, respectively, and then we apply our estimation routine.\footnote{To generate the artificial data set, we employ the same simulation procedure described in Steps 1-3 in Section \ref{simmulation} using the trade data from EK.} We repeat this procedure 100 times. Table \ref{tb:fake_data_rslts} reports average estimates. The sequence of artificial data is the same for both the overidentified case and the exactly identified case to facilitate comparisons across estimators.
+
+The first row presents the average value of our simulated method of moments estimate, which is 8.27 with a standard error of 0.03. For all practical purposes, the estimation routine recovers the true value of $\theta$ that generated the data. To emphasize our estimator's performance, the next two rows of Table \ref{tb:fake_data_rslts} present the approach of EK (which also corresponds to the moments used). Though not surprising given the discussion above, this approach generates estimates of $\theta$ that are significantly (in both their statistical and economic meaning) higher than the true value of $\theta$ of 8.28.
+
+The final two rows present the exactly identified case when we use only one moment to estimate $\theta$. In this case, we use $\beta_1$.  Similar to the overidentified case, the average value of our simulated method of moments estimate is 8.28 with a standard error of 0.04. Again, this is the same as the true value of $\theta$.
+
+The second column reports the results when the true value of $\theta$ is set equal to 4.00. The estimates using our estimator are 4.00 in both the overidentified and the exactly identified case, respectively. Similar to the previous results, these values are equivalent to the true value of $\theta$. Furthermore, the alternative approaches that correspond to the moments that we used in our estimation are biased away from the true value of $\theta$.
+
+We also compare our estimation approach to an alternative statistical approach to bias reduction. \citet{robson1964} propose a way to reduce the bias when estimating the truncation point of a distribution. This problem is analogous to estimating the trade cost from price differences. This can be seen by inspecting the integral in (\ref{tc_inequality}) of Lemma \ref{lemma1}. \citeapos{robson1964} approach would suggest (in our notation) an estimator of the trade cost of $2\hat{\tau}^1_{ni} - \hat{\tau}^2_{ni}$, or two times the first-order statistic minus the second-order statistic. This makes intuitive sense because it increases the first-order statistic by the difference between the first- and second-order statistic. They show that this estimator is as efficient as the first-order statistic but with less bias.\footnote{\citet{robson1964} provide more-general refinements using inner-order statistics, but methods using inner-order statistics will have very low efficiency. \citet{cooke1979} provides an alternative bias reduction technique but only considers cases in which the sample size ($L$ in our notation) is large.}
+
+\begin{table}[!h]
+\refstepcounter{table}
+\renewcommand{\arraystretch}{1.5}
+\setlength {\tabcolsep}{3.65mm}
+\begin{center}\label{tb:robson}
+\begin{tabular}[t]{l c c}
+\multicolumn{3}{c}{\ \ \ \ \textbf{Table \ref{tb:robson}:} \textbf{Comparison to Alternative Statistical Approaches to Bias Reduction\ \ \ \ }}
+\\
+\hline
+\hline
+  & \multicolumn{1}{c}{\textbf{True $\theta$ = 8.28}} & \multicolumn{1}{c}{\textbf{True $\theta$ = 4.00}}\\
+\hline
+Estimation Approach &  Mean Estimate of $\theta$ (S.E.) &  Mean Estimate of $\theta$ (S.E.) \\
+\hline
+SMM  & \phantom{1}8.28  \ (0.04)   & 4.00  \ (0.02)     \\
+\citet{robson1964} & 10.63 \ (0.06)  &  5.14 \ (0.03)        \\
+Moment, $\beta_1$ & 12.52 \ (0.05)  &  6.03 \ (0.03)        \\
+\hline
+\end{tabular}
+\\[0.75ex]
+\parbox{6.5in}{\footnotesize  \textbf{Note:} In each simulation there are 19 countries, 150,000 goods and 100 simulations performed. The sequence of artificial data is the same for all cases.}
+\end{center}
+\end{table}
+
+We apply their approach to approximate the trade friction and then use it as an input into the simple method of moments estimator. Table \ref{tb:robson} compares the results from this estimation procedure to the results obtained using our SMM estimator. The second row reports the results when using \citeapos{robson1964} approach to reduce the bias. This approach reduces the bias relative to using the first-order statistic (EK's approach) reported in the third row. It is not, however, a complete solution, as the estimates are still meaningfully higher than both the true value of $\theta$ and the estimates from our estimation approach. Moreover, we should emphasize \citeapos{robson1964} approach only appeal is its computational simplicity. The fact that the approach does not depend on the explicit distributional assumptions is not a benefit because without these assumptions the model does not yield a gravity equation. Without gravity, it is not clear what structural parameter is being estimated, which calls into question the entire enterprise.
+
+Overall, we view these results as evidence supporting our estimation approach and empirical estimates of $\theta$ presented in Section \ref{empirical_estimates} below.
+
+
+\section{Empirical Results}\label{empirical_estimates}
+
+In this section, we apply our estimation strategy described in Section \ref{sec:est_approach} to several data sets. The key finding of this section is that our approach yields an estimate around four, in contrast to \citeapos{ek02} estimation strategy, which results in an estimate around eight.
+
+\subsection{New ICP Data}
+
+Our sample contains 123 countries. We use trade flows and production data for the year 2004 to construct trade shares. The trade and production data and the construction of trade shares are standard in the literature, so we relegate the details to Appendix 1.1. Instead, in this section, we focus on the price data. To compute aggregate price indices and proxies for trade costs we use basic-heading-level price data from the 2003-2005 round of the International Comparison Program (ICP). \citet{bradford_restat} and \citet{bradford} use earlier rounds of the ICP price data to measure the degree of fragmentation, or the level of trade barriers, among OECD countries. The authors, as well as \citet{deaton_heston_icp}, provide an excellent description of the data-collection process.
+
+The ICP collects price data on goods with identical characteristics across retail locations in the participating countries during the 2003-2005 period.\footnote{The ICP Methodological Handbook is available at http://go.worldbank.org/6VPHKOKHG0} The basic-heading level represents a narrowly-defined group of goods for which expenditure data are available. The data set contains a total of 129 basic headings. Appendix 1.2 provides details on the procedure that the ICP uses to construct the price of a basic heading. We reduce the sample to 62 tradable categories based on their correspondence with the trade data that we employ. Table 20 (in the Online Appendix) lists the 62 basic headings used in the analysis.
+
+We choose to work with this dataset for three reasons. First, the database provides extensive coverage, as it includes as many as 123 developing and developed countries that account for 98 percent of world GDP. Second, the sampled goods span all categories of GDP and therefore reflect a number of industries. Third, and most important, because this is the latest round of the ICP, the measurement issues are less severe than in previous rounds.
+
+We recognize that sources of price variation that are outside of the EK model are present in our micro-level price dataset. We consider a number of these sources in later sections as part of our robustness analysis. In the remainder of this section, however, we describe the nature of the ICP price dataset and we provide useful references for the reader, since this database has not been used extensively by the international trade literature in the past.
+
+Considerable care is taken to ensure that the price data are properly collected and recorded. \citet{icp_book} details the extensive preparation and post-collection validation checks that are performed on the ICP price data at both the national and the international level with the explicit purpose of eliminating error in the pricing of products. The ICP addresses two types of errors: product error, which refers to the failure to survey comparable products, and price error, which refers to the failure to record the price of a product correctly.
+
+To minimize product error, the products that appear on the survey are defined very precisely. \citet{deaton_heston_icp} provide the following three examples of products (within basic headings) whose prices are sampled across countries: (a) Nescaf\'{e} classic: product presentation, tin or glass jar, 100 grams: type, 100 percent Robusta: variety, instant coffee, caffeine, not decaffeinated: brand, Nestl\'{e}-Nescaf\'{e} classic; (b) Boubou (item within women’s clothing): product specification, no package, 1 unit: fibre type, cotton 100 percent: production, small scale: type, boubou: sleeve length, sleeveless: fabric design, brocade: details/features, embroidery; (c) light bulb: product presentation, carton, 1 piece: type, regular: power 40 watts: brand name, indicate brand.
+
+If a product is unavailable, price collectors are instructed to collect the price of a substitute product and record its characteristics. It is sometimes possible to adjust the price for quality differences between the product priced and the product specified. Alternatively, if other countries report prices for the same substitute product, price comparisons can be made for the substitute product as well as for the product originally specified. If neither of these options is available, the price is discarded.
+
+To minimize price error, the ICP validates the data via statistical methods aimed to identify potential outlying prices. Prices are then reconfirmed through additional data collection and/or adjustments if the initial price cannot be verified. Outliers that are large in the statistical sense are discarded. Thus, while measurement error is always a concern, the methods and approaches of the ICP are intended to minimize this error subject to feasibility.
+
+Finally, the ICP does not randomly sample prices from the entire set of produced goods in the world economy. Instead, it provides a common list of ``representative" goods whose prices are to be randomly sampled in each country over a certain period of time. A good is representative of a country if it comprises a significant share of a typical consumer's bundle there. Thus, the ICP samples the prices of a common basket of goods that appear across countries, where the goods have been pre-selected due to their highly informative content for the purpose of international comparisons.
+
+It is important to account for this feature of the ICP data in the estimation procedure that relies on the EK model. We argue that EK's model gives a natural common basket of goods to be priced across countries. In the model, agents in all countries consume all goods that lie within a fixed interval, $[0,1]$. Thus, we consider this common list in the simulated model and randomly sample the prices of its goods across countries, in order to approximate trade barriers, much like it is done in the ICP data.
+
+\subsection{Baseline Results---ICP 2004 Data}\label{sed:new_data}
+
+Table \ref{tb:real_new_data_rslts} presents the results.\footnote{The results from the Step 1 gravity regressions are presented in Table 16 and Table 19 in the Online Appendix.} The first row simply reports the moments that our estimation procedure targets. As discussed, these values correspond with EK's estimate of $\theta$.
+\begin{table}[!h]
+\refstepcounter{table}
+\renewcommand{\arraystretch}{1.85}
+\setlength {\tabcolsep}{3.75mm}
+\begin{center}\label{tb:real_new_data_rslts}
+\begin{tabular}[t]{l c c c}
+\multicolumn{4}{c}{\ \ \ \ \textbf{Table \ref{tb:real_new_data_rslts}:} \textbf{Estimation Results With 2004 ICP Data \ \ \ \ }}
+\\
+\hline
+\hline
+  &  Estimate of $\theta$ \ \ (S.E.) & $\beta_1$ & $\beta_2$ \\
+\hline
+Data Moments & ---  & 7.75 & 9.64             \\
+Exactly Identified Case & 4.14 \ \ (0.09) & 7.75 & ---            \\
+Overidentified Case & 4.10 \ \ (0.08) & 7.67 & 9.65              \\
+\hline
+\end{tabular}
+\\[0.75ex]
+%\parbox{4.85in}{\footnotesize  \textbf{Note:} In each simulation there are 19 countries and 100,000 goods. Only 100 realized prices are randomly sampled and used to estimate $\theta$. 100 simulations performed. }
+\end{center}
+\end{table}
+
+The second row reports the results for exactly identified estimation, where the underlying moment used is $\beta_1$. In this case, our estimate of $\theta$ is 4.14, roughly half of EK's estimate of $\theta$.
+
+The third row reports the results for the overidentified estimation. The estimate of $\theta$ is 4.10---almost the same as in our exactly identified estimation and, again, roughly half of EK's estimate. The second and third columns report the resulting moments from the estimation routine, which are close to the data moments targeted.
+
+It should be noted that our estimates of the trade elasticity imply that trade costs are very large. Using the estimate that EK would arrive at from the ICP database---7.75---the median trade cost across all countries is 3.3 with an inter-quartile range between 2.4 and 4.6. Using our estimate of 4.14, the implied trade costs are substantially larger. The median trade cost is now 9.2 with an inter-quartile range between 5.1 and 17.2. The overall size of these costs hides the relatively low frictions between rich countries (recall that there are 123 countries in the ICP dataset, many of which are very poor). For example, the median trade cost between only OECD countries is only 3.2. This estimate is consistent with our estimates of trade frictions using the EK data, which focuses only on rich/developed countries.
+
+
+\subsection{Estimates Using EK's Data}\label{sed:ek02_data}
+
+In this section, we apply our estimation strategy to the same data used in EK as another check of our estimation procedure. Their data set consists of bilateral trade data for 19 OECD countries in 1990 and 50 prices of manufactured goods for all countries.\footnote{The data are available here: http://home.uchicago.edu/kortum/papers/tgt/tgtprogs.htm.} The prices come from a study conducted by the OECD. It is these same data that were included in a round of the ICP in the early 1990's. Similar to our data, the price data are at the basic-heading level and are for goods with identical characteristics across retail locations in the participating countries.
+\begin{table}[!htbp]
+\refstepcounter{table}
+\renewcommand{\arraystretch}{1.85}
+\setlength {\tabcolsep}{3.75mm}
+\begin{center}\label{tb:real_ek_data_rslts}
+\begin{tabular}[t]{l c c c}
+\multicolumn{4}{c}{\ \ \ \ \textbf{Table \ref{tb:real_ek_data_rslts}:} \textbf{Estimation Results With EK's Data \ \ \ \ }}
+\\
+\hline
+\hline
+  &  Estimate of $\theta$ \ \ (S.E.) & $\beta_1$ & $\beta_2$ \\
+\hline
+Data Moments & ---  & 5.93 & 8.28             \\
+Exactly Identified Case & 3.93 \ \ (0.17) & 5.93 & ---            \\
+Overidentified Case & 4.27 \ \ (0.16) & 6.45 & 7.84              \\
+\hline
+\end{tabular}
+\\[0.75ex]
+%\parbox{4.85in}{\footnotesize  \textbf{Note:} In each simulation there are 19 countries and 100,000 goods. Only 100 realized prices are randomly sampled and used to estimate $\theta$. 100 simulations performed. }
+\end{center}
+\end{table}
+
+
+Table \ref{tb:real_ek_data_rslts} presents the results.\footnote{The results from the Step 1 gravity regressions are presented in Table 17 and Table 19 in the Online Appendix.} The first row simply reports the moments that our estimation procedure targets. The entry in the third column corresponds with $\beta_2$, which is EK's baseline estimate of $\theta$.
+
+The second row reports the results for exactly identified estimation, where the underlying moment used is $\beta_1$. In this instance, our estimate of $\theta$ is 3.93, which is, again, roughly half of EK's estimate of $\theta$. The standard error of our estimate is fairly tight.
+
+The third row reports the results for the overidentified estimation. Here, our estimate of $\theta$ is 4.27. Again, this is substantially below EK's estimate. Unlike our results in Table \ref{tb:real_new_data_rslts} with newer data, the overidentified case is giving a slightly different value than the exactly identified case gives. This contrasts with the Monte Carlo evidence, which suggests that the estimation procedure should not deliver very different estimates. Furthermore, comparing the data moments in the top row versus the implied moments in the second and third columns of the third row suggests that the estimation routine is facing challenges fitting the observed moments. We view this as pointing towards a problem with measurement error in the old data, as EK suggested.
+
+Once again, there is a substantial difference between the implied trade barriers from EK's and our estimation. Using EK's original estimate of 8.28, the median trade cost is 1.9 with an inter-quartile range between 1.5 and 2.1. Using our estimate of 3.93, the median trade cost is 3.7 with an inter-quartile range between 2.4 and 4.7. This estimate is about 100 percentage points larger than \citeapos{aw04} estimate that the total trade barrier is equivalent to a 170 percent ad-valorem tax equivalent, or a trade cost of 2.7.
+
+
+
+\subsection{Relation to Existing Literature}
+
+The elasticity of trade has been a focus of many studies. Below we discuss our method and results in relation to alternatives in the literature. We focus our discussion first on alternative procedures that use price variation to approximate trade frictions and then on gravity-based estimators that use alternative proxies of trade frictions to estimate the trade elasticity.
+
+EK provide a second estimate of the trade elasticity that amounts to 12.8.\footnote{\citet{waugh} estimates the trade elasticity as well using EK's benchmark approach and hence our critique and solution applies to his approach as well.} Our critique and proposed solution apply to the estimator employed in this exercise as well. The critique applies because the alternative estimation approach is based on the same measures of trade frictions discussed above, which always underestimate the true trade friction. In Appendix C, we perform a Monte Carlo study where we find that EK's alternative methodology yields estimates that are nearly 100 percent higher than the true elasticity. Then, we employ a simulated method of moments estimator that minimizes the distance between the moments from EK's alternative approach on real and artificial data. We find that the estimate of $\theta$ is 4.39, which is essentially the same as our estimate in Table \ref{tb:real_ek_data_rslts}.
+
+\citet{donaldson09} estimates $\theta$ as well, and his approach is illuminating relative to the issues we have raised. His strategy for approximating trade costs is to study differences in the price of salt across locations in India. In principle, his approach is subject to our critique as well---i.e., how could price differences in one good be informative about trade frictions? However, he argues convincingly that in India, salt was produced in only a few locations and exported everywhere. Thus, by examining salt, \citet{donaldson09} finds a ``binding good''. Using this approach, he finds estimates in the range of 3.8-5.2, which is consistent with our range of estimates of $\theta$.
+
+%Overall, using several estimators and three different data sets that span a large set of developing and developed countries, we contribute a mosaic of evidence that suggests that the elasticity of trade is is roughly four or lower.
+
+\citet{aw04} survey the literature on trade-elasticity estimates obtained from gravity-based methods (which include EK's approach) and they find that the estimates range between five and ten. Excluding EK's results, the evidence cited in \citet{aw04} comes from two alternative estimation approaches. The first uses second moments of changes in prices and expenditure shares, as in \citet{feenstra1994}. The second uses the gravity equation with direct measures of trade barriers (i.e. tariffs), as in \citet{head_ries01}, \citet{baier2001}, and \citet{romalis}. We discuss each of these approaches in turn.
+
+%All approaches (including ours) have deficiencies. Relative to these approaches, the value added of our method is that it addresses the shortcomings of these alternative approaches, albeit at the cost of relying on a particular model. Thus, our approach should be viewed as complementary to the alternatives.
+
+
+In Appendix D, we explore \citeapos{feenstra1994} method in the context of EK's Ricardian model with micro-level heterogeneity. We find that \citeapos{feenstra1994} method, as well as papers that build on it such as \citet{bwqje}, \citet{imbs10}, and \citet{feenstra_russ}, does not recover the elasticity of trade in EK's Ricardian model with micro-level heterogeneity. In particular, we apply \citeapos{feenstra1994} method to data generated from EK's model and we show that the method recovers the utility parameter $\rho$ that controls the elasticity of substitution across goods; not the trade elasticity $\theta$. This utility parameter plays no role in determining aggregate trade flows and welfare gains from trade in EK's Ricardian model  with micro-level heterogeneity.\footnote{The parameter governs the elasticity of trade and welfare in models that do not feature micro-level heterogeneity such as the \citet{and79} and \citet{krug80} models (see \citet{acr09}). In \citet{sw11}, we show that our method can also recover this key parameter in the two frameworks that do not feature micro-level heterogeneity.} Hence, elasticity estimates obtained using \citeapos{feenstra1994} approach should not be used in quantitative analysis of Ricardian and monopolistic-competition models with micro-level heterogeneity.\footnote{\citet{feenstra2010product} makes a similar argument in the context of the \citet{mel03} model when parameterized as in \citet{chaney08}.}
+
+The second set of estimates in \citet{aw04} are obtained using direct measures of trade barriers in the gravity equation of trade. This methodology typically yields estimates in the range of five to ten and above. The estimates that \citet{aw04} report are obtained using time-series and cross-industry variation in tariffs and trade flows during bilateral trade liberalization episodes as in \citet{head_ries01} and \citet{romalis}, or time-series variation in tariffs in the cross-section of countries as in \citet{baier2001}. Recently, \citet{caliendo2010} build on these approaches and estimate sectoral trade elasticities from cross-sectional variations in trade flows and tariffs.
+
+The tariff-based estimation approach is appealing because of its simplicity and the appearance of being model-free. However, in order to apply it to EK's Ricardian model with micro-level heterogeneity, the model must be able to generate a gravity equation. Given the model's utility specification, the assumption that productivity is drawn from a Fr\'{e}chet  distribution is crucial to obtain this result, as \citet{acr09} argue. Hence, both our methodology and the approach that uses tariffs share the same parametric restrictions in order to be applied to EK's Ricardian model.
+
+Admittedly, there is a substantial difference between the values of the elasticity that are typically obtained using the tariff-based versus our approach. In particular, \citet{head_ries01}, \citet{romalis}, and \citet{baier2001} find values in the range of five to ten, while our benchmark estimates center around four. The corollary is that low values of the elasticity imply large deviations between observed trade frictions (tariffs, transportation costs, etc.) and those inferred from trade flows.
+
+There are two pieces of evidence in support of the values that we find. First, \citet{parro2013} uses the approach of \citet{caliendo2010} to estimate an aggregate trade elasticity for capital goods and non-capital, traded goods. He finds estimates of 4.6 and 5.2 with a standard error of 0.27 and 0.29. These point estimates are only modestly larger than ours. Thus, there are tariff based estimates of the elasticity that are consistent with our findings.
+
+Second, our results compare favorably with alternative estimates of the shape parameter of the productivity distribution, $\theta$, that \emph{are not} obtained from gravity-based estimators. For example, estimates of the shape parameter from firm-level sales data, as in \citet{bejk03} and \citet{ekk08}, are in the range of 3.6 to 4.8---exactly in the range of values that we find. \citet{bv09} estimate $\theta$ matching moments regarding the skill intensity of trade and find a value of five. The identifying source of variation in \citet{bejk03} and \citet{ekk08} comes from firm-level data, which suggest that there is a lot of variation in firm productivity. The data in our paper are telling a similar story: price variation (once properly corrected) suggests that there is a lot of variation in productivity implying a relatively low trade elasticity.
+
+
+
+
+%Second, estimation strategies that use tariff data have to make strong assumptions on the form that both observable and unobservable components of trade frictions can take. For example, \citet{head_ries01} and \citet{romalis} assume that trade costs are symmetric, while \citet{caliendo2010} use triple differences across countries to avoid imposing the trade-cost symmetry assumption. Moreover, all three studies must assume that the unobservable component to trade frictions is uncorrelated with the observed component. This is likely to be violated during a typical liberalization episode, during which both tariff and (unobserved) non-tariff trade barriers fall. But, the magnitude of the change in the trade friction is critical to obtaining an unbiased estimate of the trade elasticity. For example, depending on how non-tariff barriers are controlled for in \citet{head_ries01}, the estimate of the elasticity ranges from 11.4 to 7.9. Overall, since the method assigns the entire change in trade flows during trade liberalization to the change in tariffs, it is not surprising that the resulting elasticity estimates are high.
+
+%Second, data limitations arise because one needs adequate measures of tariffs to identify the elasticity from observed trade flows. To satisfy this restriction, researchers have typically concentrated on estimating the elasticity for the U.S., Canada, and other rich countries. It is not clear whether these estimates are applicable when addressing important questions such as: How large are the welfare gains from trade for poor and developing countries?\footnote{Two extensions of the \citet{ek02} framework have focused on this question. \citet{waugh} shows that poor countries have the most to gain from international trade and asymmetry in trade barriers accounts for a third of cross-country income differences. \citet{fieler2007} argues that the trade elasticity for poor countries is fifty percent higher than the elasticity for rich countries, and that this difference affects the welfare gains from trade. Our elasticity estimates (relative to EK's) increase the welfare cost of asymmetries in trade frictions in \citeapos{waugh} analysis by over thirty percent. Contrary to \citeapos{fieler2007} findings, we find evidence that trade elasticities are similar or lower for poor countries relative to rich countries.} Our method, in combination with a small sample of comparable price data, allows us to estimate the trade elasticity for 123 countries. To the best of our knowledge, this is the widest coverage across rich and poor countries for which the trade elasticity has been estimated.
+
+
+
+Finally, we want to point out that, like methods that use tariffs and the gravity equation, our methodological approach is not specific to EK's model. The methodology and the moments that we use to estimate the trade elasticity within EK's Ricardian framework can be derived from other structural gravity models of trade that feature product differentiation. In \citet{sw11}, we demonstrate the applicability of our estimator to the \citet{and79} and \citet{krug80} models, the Ricardian framework with variable mark-ups of \citet{bejk03}, and the monopolistic-competition model of \citet{mel03} as articulated in \citet{chaney08}.
+
+Our main finding is that different models---estimated to fit the same moments in the data---imply different trade elasticities. The key insight behind the result is that the different margins of adjustment in new trade models, e.g., an extensive margin or variable markups, alter the mapping from the price data to the estimate of the trade elasticity. For example, in \citet{bejk03}, mark-ups are negatively correlated with marginal costs implying that the same degree in cost variation results in smaller variation of prices relative to EK. Hence, the maximal price difference lies further below the trade friction relative to the EK model and an even lower trade elasticity is needed to rationalize the same amount of trade observed in the data. Thus, the presence of variable markups yields a lower estimate of the trade elasticity and, hence, larger welfare gains from trade.
+
+
+%This point has broader implications in light of \citeapos{acr09} arguments. The authors argue that many trade models yield the same welfare-gain equation in (\ref{welfare}). Hence, given a common estimator of the trade elasticity (perhaps one that uses tariffs and the gravity equation that the models generate), the welfare gains across different models are the same. In contrast, our methodological approach provides a common estimator that is gravity-based, but is not trivially the same across models. Thus, one can use the estimator to test the assumption that new models of heterogeneity have the same trade elasticity and therefore the same welfare gains from trade.
+
+
+%While the new international trade models of EK, \citet{mel03} and \citet{chaney08} give the same formula for the welfare gains from trade as \citet{krug80} or a simple Armington model would, their heterogenous micro-level structure enables researchers to better estimate the elasticity of trade with a gravity-based estimator. Our paper illustrates this point and thus provides an alternative rationale for the value added of new heterogenous-production models of trade.
+%
+%
+%
+%
+%imply that the welfare gains from trade across a common set of models our the same.
+%
+%In this way our estimation approach is similar to the one using tariff data and the gravity equation that is applicable in an model that generates a gravity equation of trade.
+%
+%However,
+%
+%The reliance upon the particulars of a model to estimate the trade elasticity illustrates the value added of new heterogenous production models of trade.
+
+
+%Our estimation approach would not have been possible in models without heterogeneous outcomes such as \citet{krug80} and the Armington model of \citet{aw03}. This is an important point in light of \citeapos{acr09} arguments. While the new international trade models of EK, \citet{mel03} and \citet{chaney08} give the same formula for the welfare gains from trade as \citet{krug80} or a simple Armington model would, their heterogenous micro-level structure enables researchers to better estimate the elasticity of trade with a gravity-based estimator. Our paper illustrates this point and thus provides an alternative rationale for the value added of new heterogenous-production models of trade.
+
+
+%Moreover, note that the estimates of $\theta$ when only OECD countries are considered (EK's data)  are similar to our baseline with a large number of developed and developing countries. This evidence is suggestive that $\theta$ does not vary systematically across countries depending upon the level of development of the country.
+
+%Finally, it should be noted that the elasticity of trade, $\theta$, is closely related to the elasticity of substitution between foreign and domestic goods, the Armington elasticity, which determines the behavior between trade flows and relative prices across a large class of models. \citet{ruhl2008} presents a comprehensive discussion of the puzzle regarding this elasticity. In particular, he argues that international real business-cycle models need low elasticities, in the range of one to two, to match the quarterly fluctuations in trade balances and the terms of trade, but static applied general-equilibrium models need high elasticities, between ten and 15, to account for the growth in trade following trade liberalization. Recently, \citet{imbs10} estimate import and export price elasticities for 28 countries within a range of three to five. Moreover, using very disaggregate data, \citet{feenstra_russ}, \citet{romalis}, \citet{bwqje}, and \citet{hummels01} provide estimates for the Armington elasticity parameter across a large number of industries. \citeapos{feenstra_russ} median estimate is 4.4; \citeapos{romalis} estimates range between four and 13, \citeapos{hummels01} estimates range between three and eight; while the most comprehensive work of \citet{bwqje}, who provide tens of thousands of elasticities using ten-digit HS US data, results in a median value of 3.10.
+
+%Given our estimates of $\theta$, it is straightforward to back out the Armington elasticity $\rho$ within the context of the model of \citet{aw04}, where $\rho=\theta+1$. Using our estimates of the elasticity of trade, the implied Armington elasticity ranges between 4.93 and 5.42. This utility parameter also appears in the heterogeneous firm framework of \citet{mel03} parameterized by \citet{chaney08}. Together with the elasticity of trade, $\theta$, the utility parameter governs the distribution of firm sales arising from the model, which has Pareto tails with a slope given by $\theta/(\rho-1)$. \citet{luttmer} discusses firm-level evidence that this slope takes on the value of 1.65, which given our estimates of $\theta$, provides the range of 3.38-3.68 for $\rho$. Hence, the Armington elasticity implied by our estimates ranges between 3.38 and 5.42, which falls within the low end of the ranges of estimates of existing studies. Thus, our results close the gap between (implied) estimates of the elasticity of trade stemming from a rich demand structure and the ones obtained from the general-equilibrium structure of a Ricardian model of trade.
+
+
+\section{Robustness}\label{sec:robust}
+
+In this section, we conduct a variety of exercises to verify the robustness of our benchmark estimates of the trade elasticity. First, we discuss some computational issues regarding the number of goods in the simulation. Second, we explore the sensitivity of our results to different assumptions regarding the functional form that trade costs take. Third, we apply estimation approaches that are based on different moment conditions than the ones employed above. Fourth, we allow for additional sources of variation in the price data that are not captured by the EK model. In particular, we discuss issues that relate to distribution costs, mark-ups, good-specific trade costs, product quality, and aggregation, and the possible biases that they may introduce in our estimation.
+
+\subsection{The Number of Goods}\label{sec:num_goods}
+
+The estimation routine requires us to take a stand on the number of goods in the economy. We argue that the appropriate way to view this issue is to ask: how many goods are needed to numerically approximate the infinite number of goods in the model? Thus, the number of goods chosen should be judged on the accuracy of the approximation relative to the computational cost. The choice of the number of goods should not be judged on the basis of how many goods actually exist in the ``real world'' because this value is impossible to know or discipline.
+
+To understand our argument, recall that our estimation routine is based on a moment condition that compares a biased estimate from the data with a biased estimate using artificial data. In Section \ref{sec:biased_estimate}, we argued that the bias depends largely on the expected value of the max over a finite sample of price differences---i.e., the integral of the left-hand side of equation (\ref{tc_inequality}). Thus, when we compute the biased estimate using artificial data, we are effectively computing this integral via simulation.\footnote{An alternative estimation strategy would be to use different numerical methods to compute the integrals (\ref{tc_inequality}) and then to adjust the EK estimator given this value.} This suggests that the number of goods should be chosen in a way that delivers an accurate approximation of the integral. Furthermore, a way to judge if the number of goods selected delivers an appropriate approximation is to increase the number of goods until the estimate of $\theta$ does not change too much.
+
+Table \ref{tb:sens_good_rslts} reports the results of this analysis. It shows how our estimate of $\theta$ varies as the number of goods in the economy changes, using the EK data and the 2004 ICP data. For the EK data, notice that our estimates vary little above 5,000 goods. Moreover, the estimates are effectively the same after the number of goods is above 100,000, suggesting that this is a reasonable starting point.
+
+\begin{table}[!t]
+\refstepcounter{table}
+\renewcommand{\arraystretch}{1.75}
+\setlength {\tabcolsep}{1.75mm}
+\begin{center}\label{tb:sens_good_rslts}
+\begin{tabular}[t]{l c c c c c c}
+\multicolumn{6}{c}{ \textbf{Table \ref{tb:sens_good_rslts}: Results with Different \# of Goods}}
+\\
+\hline
+\hline
+Number of Goods &1,000& 5,000& 25,000 &100,000 & 150,000$^*$ \\
+\hline
+EK's Data, Exactly Identified Case, \  $\hat{\theta}$ & 4.57 & 4.13  & 3.99  &3.93 & 3.93          \\
+Fraction of Wrong Zeros & 0.29 &0.10 & 0.03 & 0.005 & 0.003\\
+Fraction of Correct Zeros & ---  & ---  & --- & --- & ---         \\
+\hline
+2004 ICP Data, Exactly Identified Case, \  $\hat{\theta}$ & 6.54 & 5.43 & 4.67  & 4.22 & 4.14              \\
+Fraction of Wrong Zeros &0.63 & 0.46 & 0.31 & 0.21 & 0.18\\
+Fraction of Correct Zeros& 0.93& 0.85  & 0.72  & 0.55 & 0.50         \\
+\hline
+\end{tabular}
+\\[0.75ex]
+%\parbox{5.70in}{\footnotesize  \textbf{Note:} Fraction of Correct Zeros equals the number zero trade flows that correspond with observed zero trade flows relative to the total number of observed zero trade flows. The Fraction of Wrong Zeros equals zeros that are predicted by the model but are not seen in the data.}
+\end{center}
+\end{table}
+
+The results obtained using the 2004 ICP data, which feature 123 countries, vary more depending upon the number of goods used. While the change from 4.22 to 4.12 when going from 100,000 to 150,000 goods is numerically large, computational costs force our hand to settle on 150,000 as the number of goods in the economy.\footnote{The reason is that 150,000 goods is near the maximum number of goods feasible while still being able to execute the simulation routine in parallel on a multi-core machine.}
+
+Table \ref{tb:sens_good_rslts} also reports a side effect of using a low number of goods---zero trade flows between countries predicted by the model in places where we observe positive trade flows in the data. The reason for zero trade flows is that the probability of no trade occurring between any two country pairs is increasing with a more ``sparse'' approximation of the continuum of goods. This result is consistent with \citet{ball_bin10} and their emphasis on the sparsity of trade data in accounting for zeros in trade flows.
+
+Table \ref{tb:sens_good_rslts} reports the fraction of zeros that the model produces in instances where there are positive trade flows observed in the data. With only 5,000 goods, using the 2004 ICP data set, in almost half of the instances where trade flows are observed in the data, the model generates a zero. While not as severe, ten percent of positive trade flows are assigned zeros with the EK data. Results of this nature suggest increasing the number of goods to minimize the number of wrong zeros, though at the cost of getting some observed zeros incorrect.
+
+\subsection{Trade Cost Functional Form}\label{sec:tc_func}
+
+This section explores how the results depend upon our assumptions about the particular functional form that trade costs take. Overall, we find that our main results are robust to alternative trade-cost representations.
+
+In \textbf{Step 2.} of our estimation we specified a particular functional form (equation (\ref{grav2})) for the trade costs. To explore the sensitivity of our results to this assumption we consider two alternative approaches.
+
+First, we rely on the functional form for trade costs that was employed by EK
+\begin{eqnarray}
+\log\hat\tau_{ni} = d_{k} + b_{ni} + m_n.
+\label{eq:grav_ek}
+\end{eqnarray}
+The functional form mimics the one used throughout the paper except for the presence of an importer fixed effect rather than the exporter fixed effect ($m_n$ vs. $ex_i$). This term allows the trade-cost level to vary depending upon the importer rather than the exporter as in the main results of the paper. As discussed in \citet{waugh}, the model-implied trade flows using this functional form will not differ from the baseline specification; the differences lie in the way in which the trade costs co-vary with country pairs and the $\hat{S}$'s estimated from the gravity regression.
+
+Second, we re-estimate the trade elasticity without imposing any functional form on the trade costs. In particular, we back out the scaled trade costs as a residual from Equation (\ref{log_elasticity_trade})
+\begin{eqnarray}
+&&\log\hat\tau_{ni} = -\frac{1}{\hat\theta}\log\left(\frac{X_{ni}/X_n}{X_{ii}/X_i}\right) -  \log \hat{P}_i +  \log \hat{P}_n , \label{eq:tau_exact}\\
+\nonumber \\
+&&\mbox{where} \ \ \log \hat{P}_i = \frac{1}{L} \sum_{\ell = 1}^{L} \log(p_i(\ell)). \nonumber
+\end{eqnarray}
+So given value of $\hat\theta$, trade flow data, and proxies for aggregate price indices, we recover trade costs as a residual from (\ref{eq:tau_exact}). What remains is to recover the implied $\hat S$ parameters (necessary to simulate marginal costs) that are consistent with these trade costs. To do so, note that there is a log-linear relationship between the $\hat S$'s, a country's price index, and its home trade share,
+\begin{eqnarray}
+\hat S_i = -\hat\theta \log \hat{P}_i + \log\left(X_{ii}/X_i\right), \label{eq:S_exact}
+\end{eqnarray}
+which allows us to recover the $\hat S$ parameters. We should note that these $\hat S$ parameters are recovered in a way so that the model will \emph{exactly} (up to any simulation error) replicate the observed trade flows and aggregate price indices.
+
+\begin{table}[!h]
+\refstepcounter{table}
+\renewcommand{\arraystretch}{1.85}
+\setlength {\tabcolsep}{3.75mm}
+\begin{center}\label{tb:tc_functional_form}
+\begin{tabular}[t]{l l c }
+\multicolumn{3}{c}{\ \ \ \ \textbf{Table \ref{tb:tc_functional_form}:} \textbf{Alternative Trade Cost Functional Forms: Estimation Results}}
+\\
+\hline
+\hline
+Data Set & Functional Form  &  Estimate of $\theta$ \ \ (S.E.)  \\
+\hline
+\multirow{3}{*}{EK Data} & Baseline & 3.93 \ \ (0.17) \\
+& EK Functional Form & 3.93\ \ (0.17) \\
+& No Functional Form/Residual & 3.96 \ \ (0.18) \\
+\hline
+\multirow{3}{*}{ICP Data } & Baseline & 4.14 \ \ (0.09) \\
+& EK Functional Form & 4.14 \ \ (0.09) \\
+& No Functional Form/Residual & 4.46 \ \ (0.12) \\
+\hline
+\end{tabular}
+\\[0.75ex]
+\parbox{5.75in}{\footnotesize  \textbf{Note:} Exactly identified case used across all specifications.}
+\end{center}
+\end{table}
+
+Table \ref{tb:tc_functional_form} presents the results. The top panel reports the results using the EK data under the baseline specification, the EK functional form, and the residual-based specification. Across all cases, the estimate of $\theta$ is effectively the same as in the baseline case, i.e. around 4. The ICP results tell a similar story. The bottom panel reports the results using the ICP data set under the three different trade-cost specifications. Similar to the results with the EK data set, the estimate using the EK functional form is virtually indistinguishable from the one obtained using the \citet{waugh} functional form; the residual based specification is only slightly larger (4.46 vs. 4.14) than the baseline.\footnote{The similarity in the results obtained using exporter versus importer fixed effects is not coincidental. Note that the estimator $\hat\beta$ relates average trade flows to average trade costs adjusted by aggregate price differences. Using importer or exporter fixed effects will always return the same average trade costs adjusted by aggregate price differences because both importer and exporter fixed effects will return the same average predicted trade flows. The two specifications differ in the way in which the separate components (aggregate prices and trade costs) covary with trade flows, which is the argument made in \citet{waugh}. Because our estimation is based on matching averages, for which both specifications have the same predictions, the results should be similar.}
+
+
+\subsection{Alternative Moment Conditions}
+
+In this section, we explore an alternative moment condition to estimate $\theta$. The alternative moment condition that we explore uses more information about price dispersion between countries to estimate $\theta$. The idea is to compute the average variance in prices between two countries rather than to study the maximal price difference only. In other words, we are using more information about the entire price distribution than just the max. Note that it is not a priori obvious how our baseline estimate of $\theta$ should relate to the estimate that is based upon the alternative moment condition. Hence, this robustness exercise is a strong cross-check on our results.
+
+To operationalize this idea, we define the moment
+\begin{eqnarray*}
+\psi = \frac{1}{N^2 - N} \sum_{n} \sum_{i} \mbox{var}_{ni} \left( \log p_n(\ell) - \log p_i(\ell) \right).
+\end{eqnarray*}
+In particular, for a country pair, we compute the variance of log price differences and then we average across all country pairs (not including own pairs) to arrive at $\psi$. Given the moment $\psi$ constructed from the data, we then form the following zero function
+\begin{eqnarray}
+y^{A}(\theta) = \displaystyle \left[\psi - \frac{1}{S}\sum_{s=1}^{S}\psi(\theta,u_s) \right],
+\end{eqnarray}
+with the alternative moment condition
+\begin{eqnarray*}
+E\left[y^{A}(\theta_o)\right] = 0.
+\end{eqnarray*}
+
+\begin{table}[!h]
+\refstepcounter{table}
+\renewcommand{\arraystretch}{1.85}
+\setlength {\tabcolsep}{3.75mm}
+\begin{center}\label{tb:alt_moment}
+\begin{tabular}[t]{l l c c}
+\multicolumn{4}{c}{\ \ \ \ \textbf{Table \ref{tb:alt_moment}:} \textbf{Alternative Moment Conditions: Estimation Results}}
+\\
+\hline
+\hline
+Data Set & Estimation Approach   &  Estimate of $\theta$ \ \ (S.E.) & Data Moments \\
+\hline
+\multirow{3}{*}{EK Data } & Baseline & 3.93\ \ (0.17) & 5.93\\
+& Alternative & 4.40 \ \ (0.16) & 0.10 \\
+\hline
+\multirow{3}{*}{ICP Data } & Baseline & 4.14 \ \ (0.09) & 7.75 \\
+& Alternative & 3.59 \ \ (0.06) & 0.19 \\
+\hline
+\end{tabular}
+\\[0.75ex]
+\parbox{5.95in}{\footnotesize  \textbf{Note:} Exactly identified case used across all specifications.}
+\end{center}
+\end{table}
+
+Table \ref{tb:alt_moment} presents the results. The first panel reports the results using the EK data set for the baseline and alternative moment conditions. The second panel reports the results using the ICP data set. The results using the average variance in bilateral price differences are in the same ballpark as the baseline estimates. As discussed above, we should not expect them to be the same given that the alternative approach incorporates significantly more information about price dispersion than does the baseline. However, it is reassuring that the different features of the data are telling a similar story.
+
+Finally, we explored an alternative estimation based on the moment ${1}/{\beta_1}$, instead of $\beta_1$. The idea behind this moment condition is to bring the estimation closer to our theoretical results in Section \ref{sec:ek_estimate} which centered around $1/\beta_1$. In the exactly identified estimation, we found that the baseline estimates and the estimates based on the inverse of the moment $\beta_1$ are effectively the same regardless of the data set used. The details and results from this exercise are available upon request.
+
+
+
+%\subsection{Additional Robustness Checks}
+%
+%In this section, we use output from our benchmark estimation method in Equation (\ref{log_elasticity_trade}) and verify that our results/simulation/code are consistent with this equation.
+%
+%The specifics behind the exercise are as follows: We take our estimated trade cost (where the level is pinned down by the estimated $\theta$) and price indexes from prices in the simulation and then we regress the logged trade flows on logged trade costs and logged price indexes. Mathematically, the regression we run is
+%\begin{eqnarray}
+%\displaystyle \log\left(\frac{X_{ni}/X_n}{X_{ii}/X_i}\right)&=&-\phi\left[\log\left(\hat{\tau}_{ni}\right) -  \log(\hat{P}_i) +  \log(\hat{P}_n)\right] + \varepsilon.
+%\label{log_elasticity_trade_robust}
+%\end{eqnarray}
+%where $\hat{\tau}_{ni}$ are the estimated trade frictions. The trade flows $\frac{X_{ni}/X_n}{X_{ii}/X_i}$ are the observed trade flows, not the simulated trade flows. In the first specification, the price indexes are $\log \hat{P}_i = \frac{1}{L} \sum_{\ell = 1}^{L} \log(p_i(\ell))$, where the good-level prices, $p_i(\ell)$, are from the simulation routine. In the second specification, we proxy the price indexes with country-specific fixed effects. Note what this exercise does: it takes the results from our simulation/estimation routine, plugs them back into Equation (\ref{log_elasticity_trade}), and asks whether the estimated $\phi$ corresponds to our estimated $\theta$.
+%
+%\begin{table}[!h]
+%\refstepcounter{table}
+%\renewcommand{\arraystretch}{1.85}
+%\setlength {\tabcolsep}{3.75mm}
+%\begin{center}\label{tb:alt_robust}
+%\begin{tabular}[t]{l l c c}
+%\multicolumn{4}{c}{\ \ \ \ \textbf{Table \ref{tb:alt_robust}:} \textbf{Additional Robustness Checks: Results}}
+%\\
+%\hline
+%\hline
+%Data Set & Price Proxy   &  Estimate of $\phi$ \ (S.E.)  & $\theta$ \\
+%\hline
+%\multirow{2}{*}{EK Data }  & Simulated Prices & 3.91\ \ (0.01)\phantom{0} &  3.93 \\
+%& Fixed Effects & 3.93\ \ \phantom{(0.001)} & 3.93 \\
+%\hline
+%\multirow{2}{*}{ICP Data}  & Simulated Prices & 4.03\ \ (0.001) &  4.14 \\
+%& Fixed Effects & 4.14\ \ \phantom{(0.001)} & 4.14 \\
+%\hline
+%\end{tabular}
+%\\[0.75ex]
+%\parbox{4.85in}{\footnotesize  \textbf{Note:} 3200 simulations performed. No standard error is reported for the Fixed Effects results as the value reported is the same across simulations.}
+%\end{center}
+%\end{table}
+%
+%Table \ref{tb:alt_robust} presents the results. Across both data sets and different price-index proxies, the estimates of $\phi$ correspond closely with the implied $\theta$. Moreover, when fixed effects are used to proxy the price indexes, the estimate of $\phi$ always corresponds exactly with the underlying $\theta$.
+
+
+\subsection{Additional Sources of Price Variation}\label{sec:measurement_error}
+
+The price data that we employ in our benchmark analysis constitute the 2003-2005 round of the ICP. Although the goal of the ICP is to minimize measurement error and to collect prices of comparable products across countries, the reported prices likely reflect additional sources of variation that are not captured by the EK model. In this section, we discuss issues that relate to measurement error, distribution costs, mark-ups, good-specific trade costs, product quality, and aggregation, and the possible biases that they may introduce in our estimation. We conclude that these sources of price variation potentially affect our estimation in various and different directions. Thus, in order to address them, one would need to take a stand on the mechanism that potentially generates them and incorporate it in the estimation procedure. The advantage of our simulation-based estimator that relies on a model is that it can accommodate these extensions. Below, we preview how various mechanisms may affect the results and we offer further avenues of research on this topic.
+
+\textbf{Random Measurement Error.} In our estimation, non-systematic measurement error in the price data (mean-zero measurement error) may artificially generate \emph{larger} maximal price differences than implied by the underlying model. This would result in estimates of $\theta$ that are biased downwards. To address this issue, we introduce additive log-normal measurement error to the artificial prices in our simulation routine and we re-estimate $\theta$ as described in Section \ref{sec:est_approach}. This exercise allows us to quantify the sensitivity of our results to assumptions about the extent of measurement error in the data.
+
+\begin{table}[!h]
+\refstepcounter{table}
+\renewcommand{\arraystretch}{2.15}
+\setlength {\tabcolsep}{3mm}
+\begin{center}\label{tb:mes_error}
+\begin{tabular}[t]{l c c c c c}
+\multicolumn{6}{c}{ \textbf{Table \ref{tb:mes_error}: Results with Measurement Error}}
+\\
+\hline
+\hline
+Measurement Error, $\sigma$ & 0 & 0.01 & 0.05 & 0.10 & 0.20 \\
+\hline
+EK's Data, Exactly Identified Case, \  $\hat{\theta}$  & 3.93  & 3.94 & 4.27 & 4.38 & 6.44 \\
+2004 ICP Data, Exactly Identified Case, \  $\hat{\theta}$ & 4.14  & 4.15 & 4.20 & 4.39 & 5.59  \\
+\hline
+\end{tabular}
+\\[0.75ex]
+\parbox{5.8in}{\footnotesize  \textbf{Note:} Estimates of $\theta$ are under the assumption that observed prices $p_i(j)$ in logs equal $\log(p_i(j)) = \log(\hat{p}_i(j)) + \epsilon \ $ with $\epsilon \sim N(0,\sigma)$ where $\hat{p}_i(j)$ is the true price.}
+\end{center}
+\end{table}
+
+Table \ref{tb:mes_error} presents the results from this exercise. Each column presents the estimates of $\theta$ for different magnitudes of measurement error, $\sigma$, where $\sigma$ is the standard deviation of the error. The leftmost column with $\sigma = 0$ reproduces our benchmark exactly-identified results. Table \ref{tb:mes_error} shows that our estimates increase with the extent of measurement error, which is consistent with the intuition described above. However, only when measurement error is large do our estimates change in economically meaningful amounts. For example, with $\sigma = 0.20$ our estimate of $\theta$ is 6.44 in EK's data and 5.59 in the 2004 ICP data. This amount of measurement error is large as it implies that 30 percent of all prices are mismeasured by 20 percent or more.
+
+While measurement error can meaningfully affect our results, we argue that substantial measurement error (i.e. $\sigma = 0.20$) is implausible for two reasons. First, as discussed in Section \ref{empirical_estimates}, the ICP performs extensive validation checks of the price data (at least in the 2003-2005 round) at both the national and international level with the explicit purpose of eliminating error in the pricing of products. Second, if maximal price differences reflected measurement error, then they should be relatively uncorrelated with distance, other gravity variables, and trade shares. However, we do not observe this in the data.
+
+\begin{table}[!h]
+\refstepcounter{table}
+\renewcommand{\arraystretch}{2.25}
+\setlength {\tabcolsep}{3.5mm}
+\begin{center}\label{tb:mes_error_dis}
+\begin{tabular}[t]{l  c c c}
+\multicolumn{4}{c}{ \textbf{Table \ref{tb:mes_error_dis}: Max Price Differences and Distance: Data and Model}} \\
+\hline
+\hline
+Elasticity w.r.t. Distance & Data & Model $(\sigma = 0)$ & Model $(\sigma = 0.20)$ \\
+\hline
+EK Data & 0.12 \ \ (0.015)  & 0.08 \ \ (0.024) & 0.03 \ \ (0.015) \\
+%& \ Correlation w. Distance & 0.44  & 0.40 & 0.20 \\
+2004 ICP Data & 0.10 \ \ (0.004)  & 0.07 \ \ (0.014) & 0.05 \ \ (0.010) \\
+%& \ Correlation w. Distance  & 0.28  & 0.20 & 0.14 \\
+\hline
+\end{tabular}
+\\[0.75ex]
+\parbox{6.0in}{\footnotesize  \textbf{Note:} The dependent variable is the logarithm of $\hat{\tau} = \max_{\ell \in L}\left\{\frac{p_n(\ell)}{p_i(\ell)}\right\}$ and this is regressed on the logarithm of distance, a shared border indicator, and country fixed effects. Standard errors are in parenthesis.}
+\end{center}
+\end{table}
+
+%
+%\footnote{This result is \emph{not} because the $\theta$ in the model with measurement error is higher. With $\theta = 5.59$, but with $\sigma = 0$, the correlations are 0.20 and $-0.30$.}
+
+The first row of Table \ref{tb:mes_error_dis} reports the results from the regression of log maximal price differences on log distance and other controls. The first column of Table \ref{tb:mes_error_dis} shows that maximal price differences are positively correlated with distance with an elasticity of 0.12 and 0.10 in the EK and in the 2004 ICP data. Both coefficients are statically different from zero and the magnitudes of the elasticity are similar to the findings in \citet{donaldson09}. The second and third columns of Table \ref{tb:mes_error_dis} report the results of the same regressions using artificial data generated from the estimated model (both to EK data and 2004 ICP data) with and without measurement error. Table \ref{tb:mes_error_dis} shows that the model with large measurement error predicts elasticities that are 30 to 60 percent lower relative to the model with no measurement error. Relative to the data, the model with measurement error yields elasticities that are 50 to 75 percent lower. These results suggest that substantial measurement error is inconsistent with observed correlations between maximal price differences and distance.
+
+
+
+\textbf{Good-Specific Trade Costs.} Our estimation abstracts from good-specific trade costs by following the approach of EK and focusing on the estimation of an aggregate $\theta$. The potential cost of this abstraction is that good-specific trade costs may bias the estimate of $\theta$ in various ways.
+
+Mode choice (i.e. air, land, sea) to transport goods is a natural mechanism which will lead trade costs to differ across goods. As \citet{hummels_jep} documents, different goods are shipped by different means across borders. Some goods are transported expensively by air, while others are transported cheaply by sea. Oftentimes, the characteristics of the good motivate the differences in shipping modes.
+
+\citet{lux} studies the endogenous choice of shipping mode in an extended EK framework with good- and mode-specific trade costs. The key feature of his model is that the good-specific component of trade costs depends upon the shipping mode. In the model, consumers who source a good choose both the low-cost supplier (as in EK) and the low-cost mode of shipment. An implication of \citeapos{lux} model is that the no-arbitrage condition in (\ref{ineq_two}) should be modified with relative prices bounded by the \emph{lowest} trade cost across different modes. This implies that our estimate of $\theta$ (which abstracts from good-specific trade costs) is an \emph{upper bound}. \citet{lux}, however, argues that the variation in his estimates of the mode-specific component is small and thus our estimate of $\theta$ is unlikely to be biased by economically meaningful amounts.
+
+It is important to note, however, that the presence of good-specific trade costs does not alter our critique of EK's estimator and their estimates of $\theta$. Moreover, our method is applicable to an industry- or a narrowly-defined product-level where presumably good-specific trade costs are less of a concern. One could use a multi-sector EK model (along the lines of \citet{lev_zhang_11} or \citet{caliendo2010}), estimate $\theta$'s at the industry level, and then compute an aggregate $\theta$ parameter. In fact, recently, \citet{giri_yi} rely on OECD cross-country micro data on prices for 1400 goods, each of which is mapped into one of 21 manufacturing sectors, as well as bilateral trade flows for each of these sectors to estimate sectoral trade elasticities using the method that we develop in this paper.
+
+%First, no apparent mapping exists between the ICP basic-heading level data and the SITC trade data. Second, given the relatively small number of price observations within a country, the moments from the price distribution computed at a disaggregate (ex. industry) level are likely subject to large measurement error.
+
+%\textbf{Heterogenous/Good-Specific Trade Costs.} Our estimation abstracts from good-specific heterogeneity in trade costs by following the approach of EK and focusing on the estimation of an aggregate $\theta$. The potential cost of this abstraction is that heterogeneity in trade costs may bias the estimate of $\theta$. For example, if there are two types of goods and one has low trade costs while the other has high trade costs, then the concern is that the maximum price difference will reflect the high trade-cost good and hence affect our estimate of $\theta$. Note that the key requirement is that the \emph{international} trade cost has a good specific component, otherwise any multiplicative good-specific component (e.g. concrete is costly to transport domestically and internationally) to transport cancels out when studying price differences across countries.
+%
+%
+%
+%While this intuition is appealing, the direction in which good-specific trade costs affect our estimates is not obvious. A serious consideration of good-specific trade costs demands good-specific $\theta$'s. Any bias that good-specific trade costs introduce to our estimation will depend critically on how good-specific $\theta$'s co-vary with good-specific trade costs. While a detailed empirical analysis of heterogeneous trade costs and elasticities is certainly interesting, it is beyond the scope of the present paper.
+%
+%%For example, if high trade-cost goods have low $\theta$'s, then it is plausible that our estimate of $\theta$ is representative of an ``average'' $\theta$.\footnote{To see this, note that high trade-cost goods with disproportionally low elasticities will have trade shares that are relatively larger than average. Because the maximum price difference partially identifies the trade costs from these goods and average trade is relatively lower, the estimate of $\theta$ will be larger than for the high trade cost goods. Because the high trade costs goods are low elasticity goods, the estimate of $\theta$ will actually be closer to the average $\theta$. If one thinks good-specific heterogeneity comes from tariffs, then this scenario is plausible. Optimal taxation principals suggest this outcome is entirely plausible, i.e. place tariffs on goods that are very inelastic.} In contrast, if high trade-cost goods have high $\theta$'s, then it is plausible that our estimate of $\theta$ is biased below an ``average'' $\theta$.
+%It is important to note, however, that the presence of trade-cost heterogeneity does not alter our critique of EK's estimator and their estimates of $\theta$. Moreover, our method is applicable to an industry- or a narrowly-defined product-level where presumably trade cost heterogeneity is less of a concern. For example, one could use a multi-sector EK model (along the lines of \citet{lev_zhang_11}), estimate $\theta$'s at the industry level, and then compute an aggregate $\theta$ parameter. Data limitations, however, impede the application of our approach to such a disaggregate level at present.
+
+
+\textbf{Distribution Costs and Markups.} The price data used in our estimation were collected at the retail level. These prices may reflect local distribution costs, sales taxes, and mark-ups. As long as the frictions are multiples over marginal costs of production and they are country- but not good-specific, they will not affect our estimates of the elasticity parameter. Mathematically, one can see this by noting that any multiplicative country-specific effect cancels out in the denominator of equation (\ref{beta}). This is an important reason for using $\beta$ as a moment in our estimation routine rather than some other moment.
+
+What if these effects are not multiplicative? For example, \citet{bursteinneves} present a model where distribution margins over tradable goods are additive. To understand the effects of additive distribution margins, we carry out the experiment described in Section \ref{sec:monte_carlo}: we simulate trade flows and samples of micro-level prices under a known $\theta$ and then we introduce additive distribution costs and study the bias that may arise.
+
+The Monte Carlo exercise shows that the bias in $\beta$ relative to $\theta$ is \emph{larger} than in the cases when additive distribution costs are not present. The reason is that additive distribution costs increase low prices proportionally more than high prices, so the maximum price difference is smaller than it would be otherwise. Because of the strong monotonicity between $\beta$ and $\theta$, this suggests that incorporating additive distribution costs to the estimation would make our estimates of $\theta$ even lower.
+
+Mark-ups that are not only country-, but also firm/retailer-specific is an important issue that is beyond the scope of this paper. However, in \citet{sw11}, we apply the estimator developed in this paper to \citeapos{bejk03} Ricardian framework which features variable markups. The exercise yields lower estimates of the trade elasticity relative to the EK model. The crucial observation is that because mark-ups are negatively correlated with marginal costs in \citet{bejk03}, the same degree in cost variation results in smaller variation of prices relative to EK. Hence, the maximal price difference lies further below the trade friction relative to the EK model and an even lower trade elasticity is needed to rationalize the same amount of trade observed in the data.
+
+Variable mark-ups may also arise in monopolistic-competition frameworks with micro-level heterogeneity and non-homothetic consumer preferences as in \citet{ina}. In this model, the relative price of identical goods across countries reflects trade barriers and minimum productivity thresholds necessary to serve each destination, where the latter summarize the effects that destination-specific characteristics have on the level of competition in each market. Two important points need to be made with respect to this model. First, although maximal price differences are not necessarily bounded above by trade barriers in this model, order statistics from the relative price distribution remain to be informative about trade barriers. Second, since preferences are non-homothetic, the trade elasticity and the domestic expenditure share are no longer sufficient statistics to quantify the welfare gains from trade (see \citet{acdr12}). Consequently, we leave it for future research to extend the methodology developed in the present paper to trade models that feature non-homothetic preferences.
+
+\textbf{Varying Product Quality.}
+Our estimation relies on cross-country variation in prices of goods in order to identify trade costs and ultimately trade elasticities. One may be concerned that relative prices of goods across countries reflect not only trade costs, but also varying product quality. For example, \citet{harrigan}, \citet{rob_johnson}, and \citet{manova_zhang} use free-on-board unit value data to argue that richer countries import goods of higher quality from a given source. It is important to note that these studies employ unit values from highly disaggregated trade data as proxies for prices of individual goods.
+
+In contrast, we use the basic-heading-level price data from the 2003-2005 round of the ICP in our study. As described in Section \ref{empirical_estimates}, the ICP collects prices of precisely-defined products with identical characteristics across retail locations in the participating countries. With the methodologies and practices employed by the ICP in mind, it is reasonable to argue that varying product quality is not a first-order concern in our data. Moreover, varying product quality should be even less of a concern among countries of similar levels of development. To illustrate this point, we repeat the overidentified estimation using price and trade-flow data for the thirty largest countries in terms of absorption in our dataset. The resulting estimate of the trade elasticity is 4.21, which compares favorably to the benchmark estimates obtained using data on all 123 countries.
+
+\textbf{Aggregation.} The basic-heading price data employed in our analysis are disaggregated; but, they are not at the individual-good level. For example, a price observation titled ``rice" contains the average price across different types of rice sampled, such as basmati rice, wild rice, whole-grain rice, etc. Suppose that basmati rice is the binding good for a pair of countries. In the ICP data, we compute the difference between the average price of rice between the two countries, which is smaller than the price difference of basmati rice, if the remaining types of rice are more equally priced across the two countries. In this case, trade barriers are underestimated and, consequently, the elasticity of trade is biased upwards.
+
+To quantify the bias in our estimates that is associated with aggregation, we conduct a robustness exercise using the Economist Intelligence Unit (EIU) data. The EIU surveys the prices of individual goods across various cities in two types of retail stores: mid-priced, or branded stores, and supermarkets, or chain stores. The dataset contains the nominal prices of goods and services, reported in local currency, as well as nominal exchange rates relative to the US dollar, which are recorded at the time of the survey. \citet{crucini_tz} and \citet{crucini_hakan} use the same data to study the determinants of the deviations from the law of one price across cities and countries.
+
+The database spans a subset of 71 countries from our original data set, but provides prices for 110 individual tradable goods. Table 21 in the Online Appendix lists the 110 goods used in the analysis. While in the majority of the countries, price surveys are conducted in a single major city, in 17 of the 71 countries multiple cities are surveyed.\footnote{These countries are Australia, Canada, China, France, Germany, India, Italy, Japan, New Zealand, Russian Federation, Saudi Arabia, South Africa, Spain, Switzerland, United Kingdom, USA, and Vietnam.} For these countries, we use the price data from the city which provided the maximum coverage of goods. In most instances, the location that satisfied this requirement was the largest city in the country. We use prices collected in mid-priced stores in the year 2004 and we combine them with the observations on trade and output from the benchmark analysis.\footnote{The results are robust to using supermarket price data for the same year.}
+
+\begin{table}[!h]
+\refstepcounter{table}
+\renewcommand{\arraystretch}{1.85}
+\setlength {\tabcolsep}{3.75mm}
+\begin{center}\label{tb:crucini_results}
+\begin{tabular}[t]{l c c c}
+\multicolumn{4}{c}{\ \ \ \ \textbf{Table \ref{tb:crucini_results}: Estimation Results With EIU Data \ \ \ \ }}
+\\
+\hline
+\hline
+  &  Estimate of $\theta$ \ \ (S.E.) & $\beta_1$ & $\beta_2$ \\
+\hline
+%Cheap Stores & & & \\
+%\hline
+%Data Moments & ---  & 4.17 & 5.11             \\
+%Exactly Identified Case & 2.47 \ \ (0.02) & 4.17 & ---            \\
+%Overidentified Case & 2.48 \ \ (0.02) & 4.19 & 5.09              \\
+%\hline
+%Expensive Stores & & & \\
+%\hline
+Data Moments & ---  & 4.39 & 5.23             \\
+Exactly Identified Case & 2.82 \ \ (0.06) & 4.39 & ---            \\
+Overidentified Case & 2.79 \ \ (0.05) & 4.39 & 5.24              \\
+\hline
+\end{tabular}
+\\[0.75ex]
+%\parbox{4.85in}{\footnotesize  \textbf{Note:} In each simulation there are 19 countries and 100,000 goods. Only 100 realized prices are randomly sampled and used to estimate $\theta$. 100 simulations performed. }
+\end{center}
+\end{table}
+Table \ref{tb:crucini_results} presents estimates of the elasticity parameter using EIU's good-level price data set. The results from the Step 1 gravity regressions are presented in Table 18 and Table 19 in the Online Appendix. The estimates of the elasticity of trade that we obtain from the good-level price data for the subset of 71 countries range between 2.79 and 2.82. As a point of comparison, using the same 71 countries but the ICP price data yields estimates of 3.98 and 4.05, respectively. This finding suggests that the benchmark estimates are potentially biased upwards due to aggregation.
+
+To quantify the bias, we aggregate the individual goods in the EIU dataset to the basic-heading level at which the ICP data are reported. To do so, we first assigned each good in the EIU dataset to one of the 62 basic headings employed in the ICP data. The procedure yields 41 non-zero good categories, with the mode category having 12 products. We then aggregated prices by taking the geometric average across the price of each good within each category. The elasticity estimates increase modestly to 3.04-3.08. This result suggests that aggregation bias is not a first-order concern in the benchmark analysis which relies on the ICP data.
+
+While aggregation is a (small) shortcoming of the ICP data, key benefits of the database are that it offers a wide coverage of both goods and countries, it is readily comparable to the price data employed by EK, and it is least prone to measurement error as discussed in \citet{icp_book}. Hence, it is reasonable to favor our benchmark estimates of the trade elasticity, which center around four.
+
+%\begin{table}[!h]
+%\refstepcounter{table}
+%\renewcommand{\arraystretch}{1.85}
+%\setlength {\tabcolsep}{3.75mm}
+%\begin{center}\label{tb:real_eiuagg_data_rslts}
+%\begin{tabular}[t]{l c c c}
+%\multicolumn{4}{c}{\ \ \ \ \textbf{Table \ref{tb:real_eiuagg_data_rslts}:} \textbf{Estimation Results With EIU Data, Aggregated \ \ \ \ }}
+%\\
+%\hline
+%\hline
+% &  Estimate of $\theta$ \ \ (S.E.) & $\beta_1$ & $\beta_2$ \\
+%\hline
+%Data Moments & ---  & 5.74 & 7.61             \\
+%Exactly Identified Case & 3.04 \ \ (0.02) & 5.74 & ---            \\
+%Overidentified Case & 3.08 \ \ (0.02) & 5.88 & 7.58              \\
+%\hline
+%\hline
+%\end{tabular}
+%\end{center}
+%\end{table}
+
+%\textbf{Varying Product Quality.} Although the explicit goal of price collection enterprises such as the ICP and the EIU is that comparable products are priced across countries, one may be concerned that the prices used in the estimation reflect varying quality levels.
+%
+%To address this concern, we engage in two exercises. The first involves the EIU data. This dataset features prices of comparable goods across countries collected in two different retail locations: high-end stores and low-end stores. It is reasonable to assume that prices collected in a particular store type across countries are more comparable to each other than prices collected in different types of stores. Hence, in Table \ref{tb:crucini_results} above, we provide our estimates of the elasticity using each subsample. The estimates are very similar across the two exercises, which is reassuring of our results.
+%
+%The second exercise that we perform involves the ICP data. In particular, we estimate the trade elasticity using the 2005 trade and ICP price data for the subset of nineteen developed OECD countries that EK considered in their original analysis. The presumption here is that should there exist systematic differences in product quality across countries, they will be minimized within this sample of developed and more homogeneous economies.
+%
+%EK's method of moments estimator for this subset of countries yields an estimate of 7.19. Our simulated method of moments estimator yields an estimate of 5.51 with a standard error of 0.11. This value remains on the lower end of the estimates that prevail in the existing literature. The reason why the value is higher than our benchmark estimate is because, in 2005, OECD countries were more open relative to non-OECD countries as well as relative to their own 1990 counterparts. Hence, the bias associated with EK's estimation approach is lower when trade barriers are lower (recall Figure \ref{fig.bias_tau}). An interesting point of comparison are non-OECD countries. The EK method of moments estimator for this subset is 8.31---larger than the OECD estimate. Yet, our simulated method of moments estimator yields an estimate of 4.09, which is lower than the OECD sub-sample. This is again because non-OECD countries are less open and thus the bias correction is larger.
+
+%\textbf{Summary.} We conclude that additional sources of price variation potentially affect our estimation in different directions. Thus, there would not be one particular bias in our estimate if we had incorporated all of these features into our estimation. However, an advantage of our estimation approach is that future research on this topic can accommodate these extensions and evaluate their potential effects.
+
+
+\section{Conclusion}
+
+In this paper we develop a new methodology to estimate the elasticity of trade that builds on EK's Ricardian model of international trade with micro-level heterogeneity. We apply our estimator to novel disaggregate price and trade-flow data for the year 2004, which span 123 countries that account for 98 percent of world GDP. Across numerous exercises, we obtain estimates of the trade elasticity that range between 2.79 and 4.46. These values are both lower and fall within a narrower range relative to the existing literature. Our findings imply that the measured welfare gains from international trade are twice as high as previously documented.
+
+%The methodology and the moments that we use to estimate the trade elasticity within EK's Ricardian framework can be derived from other trade models with product differentiation that generate a gravity equation of trade. The key distinction, however, is that even with the same data, different assumptions about the particular model will give different estimates of the trade elasticity. \citet{sw11} explore these issues and discuss the implications of new models of heterogeneity on the measured welfare gains from trade.
+
+
+
+\bibliography{big_bib_v7}
+
+
+
+
+\end{document}
